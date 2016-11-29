@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f83b00041ecfba705603fec40363416c7de69719">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_e34a4136e06d74ca4d57e7627ef54eb15226dfb1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_bb65d5825615d4800c31cabad5ad327bcf7cc3e8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_d56828e1437f1618a127809b96a809616ea18858\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_8330c7d02a5100dea151fdfb5486cf8c409ca173\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_163b283b712b8976d3c64c70ed587960c6f9fe4f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_23fd4ff5359dcc5302a1feecc04932b2e9104ee7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-25.0.1_c844f9728471abf889dbad7423d00cf526fb7014\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_3c3fa1bc0017982565d74b21c3f2b034fcba92b0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.0.1_8adb950156e0baddfff501bfbe67c377e4cc8450\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_6adf438e6e1da979f480bb5930d157d510c77f63\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f7ef30a85e45efcdb05951bfe18140a6c65c056a">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_f0f77c88b7e30a6c16b474664f9beb6635625e6f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_a8e05f6a423e1684f35a02d59fe80b9db181a57b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-25.0.1_52165d9e40183d5d0c0b0f1d2650eb65dd996d42\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_bed0f10301eeff363355187e61a132a420cdf40c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ad9c6639c4d68e3cb41f5d7ded4044e57f7cc8bc">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_665bf84e61600e84542b62d7bd5e50994399a5f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-25.0.1_64faf63b9ef9771ecb1536b01b9805115733d83f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
+        <dex dex="C:\Users\Maddy\Desktop\Code\Mobile_Final\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-25.0.1_f571af73a4b46928692d3773db06e3e0d2e0d82d\classes.dex" />
+    </item>
+
+</items>

@@ -16,6 +16,10 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
+	public static final String TAG = "MainActivity"; // TODO add description
+
+	Location curLocation; // Store current location
+
     // Location Permissions variables
     private static final int ACCESS_FINE_LOCATION = 201;
     private static String[] PERMISSIONS_LOCATION = {
@@ -25,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     // permission verification method.
     public static void verifyLocationPermissions(Activity activity) {
         // Check if we have read or write permission
-        int fineLocationPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION);
+        int fineLocationPermission = ActivityCompat.checkSelfPermission(activity,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+
         if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
@@ -36,24 +42,21 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
-    public static final String TAG = "MainActivity";
-
-    Location curLocation;
-
     // this receiver can receive data from the foreground service
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive: we got a message");
+            Log.d(TAG, "onReceive: we got a message"); // Log actions
 
+	        // TODO add descriptive comments
             Bundle b = intent.getBundleExtra("Location");
-            Location lastKnownLoc = (Location) b.getParcelable("Location");
+            Location lastKnownLoc = b.getParcelable("Location");
+
+	        // Check that location is valid
             if (lastKnownLoc != null) {
                 Log.d(TAG, "onReceive: We got a location from service");
                 curLocation = lastKnownLoc; // update the location field for this activity
-            }
-            else {
+            } else {
                 Log.d(TAG, "onReceive: We did not get a location from service");
             }
         }
