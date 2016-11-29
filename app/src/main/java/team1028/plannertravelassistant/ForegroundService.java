@@ -16,9 +16,9 @@ public class ForegroundService extends Service {
     private static final int LOCATION_INTERVAL = 2 * 60 * 1000; // 2 minutes
     private static final float LOCATION_DISTANCE = 150f; // 150 meters
 
-    private long wait = 30 * 1000; // sleepy time for the thread
+    private final long WAIT_TIME = 30 * 1000; // sleepy time for the thread
 
-    SomeThread R1;
+    SomeThread R1; // TODO describe
 
     // TODO use Fused Location Services rather than MyLocationListener
     public LocationManager locationManager;
@@ -64,7 +64,7 @@ public class ForegroundService extends Service {
                 .setContentTitle("Planner Travel Assistant");
 
         builder.setSmallIcon(R.drawable.fg_service);
-        int notificationID = 489543289;
+        int notificationID = 489543289; // TODO why is this hard-coded?
         Notification notification = builder.build();
         notificationManager.notify(notificationID, notification);
         startForeground(notificationID, notification);
@@ -94,7 +94,7 @@ public class ForegroundService extends Service {
                         Log.d(TAG, "Actually stopping thread: ");
                         return;
                     }
-                    Thread.sleep(wait);
+                    Thread.sleep(WAIT_TIME);
                     // launch a ServiceIntent
                     Intent i = new Intent(ForegroundService.this, MyServiceIntent.class);
                     // i.putExtra("somedata", somedata); // put some data in the service intent

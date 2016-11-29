@@ -10,6 +10,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class RestCalls {
+    private static final int READ_TIMEOUT = 1000 * 10; // Milliseconds
+    private static final int CONNECT_TIMEOUT = 1000 * 15; // Milliseconds
 
     private static String readStream(InputStream is) {
         try {
@@ -29,8 +31,8 @@ public class RestCalls {
         String returnedString = "";
         URL url = new URL(myurl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(1000 * 10 /* milliseconds */);
-        conn.setConnectTimeout(1000 * 15 /* milliseconds */);
+        conn.setReadTimeout(READ_TIMEOUT);
+        conn.setConnectTimeout(CONNECT_TIMEOUT);
 
         conn.setRequestMethod("GET");
         conn.setDoInput(true);
@@ -57,8 +59,8 @@ public class RestCalls {
         String returnedString = "";
         URL url = new URL(myurl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setReadTimeout(1000 * 10 /* milliseconds */);
-        conn.setConnectTimeout(1000 * 15 /* milliseconds */);
+        conn.setReadTimeout(READ_TIMEOUT);
+        conn.setConnectTimeout(CONNECT_TIMEOUT);
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoInput(true);
