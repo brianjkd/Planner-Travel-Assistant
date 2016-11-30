@@ -26,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
             Manifest.permission.ACCESS_FINE_LOCATION
     };
 
+
+    //
+
+
+    ///
+
+    
+
     // permission verification method.
     public static void verifyLocationPermissions(Activity activity) {
         // Check if we have read or write permission
