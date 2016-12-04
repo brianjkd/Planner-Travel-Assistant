@@ -14,8 +14,20 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     // Location Permissions variables
     private static final int REQUEST_CODE = 201;
@@ -23,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     private static String[] PERMISSIONS_ARRAY = {
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_CALENDAR
     };
+    ArrayAdapter<String> adapter;
+    ArrayList<String> listItems=new ArrayList<String>();
+    private ListView list;
 
     // permission verification method.
     public static void verifyLocationPermissions(Activity activity) {
@@ -72,6 +87,17 @@ public class MainActivity extends AppCompatActivity {
 
         verifyLocationPermissions(this);
 
+        // configure architecture so that this takes the event list from MyServiceIntent
+        listItems.add("test 1");
+        listItems.add("test 2");
+        listItems.add("test 1");
+        listItems.add("test 3");
+
+        adapter=new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1,
+                listItems);
+        list = (ListView) findViewById(R.id.eventList);
+        list.setAdapter(adapter);
         this.startService(i);
     }
 
@@ -108,4 +134,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int PROJECTION_OWNER_ACCOUNT_INDEX = 3;
 
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
 }
