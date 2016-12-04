@@ -31,21 +31,27 @@ public class ForegroundService extends Service {
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         listener = new MyLocationListener(this.getApplicationContext());
 
-
         startListener();
 
         R1 = new SomeThread( "planner travel assistant thread");
         R1.start();
     }
 
-
-    public void startListener(){
+	/**
+     * TODO add descriptive comments
+     */
+    public void startListener() {
         Log.d(TAG, "startListener: ");
-        try {locationManager.removeUpdates(listener);} catch (SecurityException e) {}
         try {
+	        locationManager.removeUpdates(listener);
+//        } catch (SecurityException e) {}
+//        try {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, listener);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, listener);
-        } catch (SecurityException e) {}
+        } catch (SecurityException e) {
+	        // TODO add catch
+	        e.printStackTrace();
+        }
     }
 
     // called multiple times potentially;
@@ -81,7 +87,7 @@ public class ForegroundService extends Service {
         private String threadName;
         private boolean stopFlag = false;
 
-        SomeThread(String name){
+        SomeThread(String name) {
             threadName = name;
             Log.d(TAG, "Creating " +  "thread");
         }
@@ -106,8 +112,7 @@ public class ForegroundService extends Service {
             Log.d(TAG, "Thread " +  threadName + " exiting.");
         }
 
-        public void start ()
-        {
+        void start () {
             Log.d(TAG, "Starting thread " + threadName);
             if (t == null) // only allow start to be called once per thread instance
             {
@@ -116,12 +121,13 @@ public class ForegroundService extends Service {
             }
         }
 
-        public void stop(){
+        void stop() {
             Log.d(TAG, "Stopping thread " + threadName);
             stopFlag = true;
         }
     }
 
+	// TODO add descriptive comments
     @Override
     public IBinder onBind(Intent intent) {
         return null;

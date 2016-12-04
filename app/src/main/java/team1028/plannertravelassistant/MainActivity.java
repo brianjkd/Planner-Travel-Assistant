@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-
 	public static final String TAG = "MainActivity"; // TODO add description
 
 	Location curLocation; // Store current location
@@ -25,14 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private static String[] PERMISSIONS_LOCATION = {
             Manifest.permission.ACCESS_FINE_LOCATION
     };
-
-
-    //
-
-
-    ///
-
-    
 
     // permission verification method.
     public static void verifyLocationPermissions(Activity activity) {
@@ -70,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,14 +72,13 @@ public class MainActivity extends AppCompatActivity {
         this.startService(i);
     }
 
-
-    public void onPause(){
+    public void onPause() { // TODO save instance state?
         super.onPause();
         // unregister message Receiver when app is not focused
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
     }
 
-    public void onResume(){
+    public void onResume() { // TODO save instance state?
         super.onResume();
         // listen for intents with the filter "newLocation"
         LocalBroadcastManager.getInstance(this).registerReceiver(

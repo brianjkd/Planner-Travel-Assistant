@@ -8,22 +8,27 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-public class MyLocationListener implements LocationListener {
-    private static final int TWO_MINUTES = 1000 * 60 * 2;
+class MyLocationListener implements LocationListener {
+    private static final int TWO_MINUTES = 1000 * 60 * 2; // TODO did I rename this correctly?
     private static final String TAG = "MyLocationListener";
-    Location previousBestLocation = null;
+    private Location PREV_BEST_LOCATION = null;
 
     private Context context;
 
-    public MyLocationListener(Context context){
+    MyLocationListener(Context context) {
         super();
         this.context = context;
     }
 
-    protected boolean isBetterLocation(Location location, Location currentBestLocation) {
+	/**
+	 * Tell if new location is better than current best
+	 * @param location New location
+	 * @param currentBestLocation Current best location
+	 * @return True if new Location is better, false otherwise
+	 */
+    private boolean isBetterLocation(Location location, Location currentBestLocation) {
         if (currentBestLocation == null) {
-            // A new location is always better than no location
-            return true;
+            return true; // A new location is always better than no location
         }
 
         // Check whether the new location fix is newer or older
@@ -42,7 +47,7 @@ public class MyLocationListener implements LocationListener {
         }
 
         // Check whether the new location fix is more or less accurate
-        int accuracyDelta = (int) (location.getAccuracy() - currentBestLocation.getAccuracy());
+        int accuracyDelta = (int)(location.getAccuracy() - currentBestLocation.getAccuracy());
         boolean isLessAccurate = accuracyDelta > 0;
         boolean isMoreAccurate = accuracyDelta < 0;
         boolean isSignificantlyLessAccurate = accuracyDelta > 75;
@@ -62,6 +67,12 @@ public class MyLocationListener implements LocationListener {
         return false;
     }
 
+	/**
+	 * Tell if two Location providers are the same
+	 * @param provider1 Location Provider 1
+	 * @param provider2 Location Provider 2
+	 * @return True if Providers are the same, false otherwise
+	 */
     private boolean isSameProvider(String provider1, String provider2) {
         if (provider1 == null) {
             return provider2 == null;
@@ -69,19 +80,28 @@ public class MyLocationListener implements LocationListener {
         return provider1.equals(provider2);
     }
 
-
+	/**
+	 * Update activity if new best Location is found
+	 * @param loc New Location
+	 */
     public void onLocationChanged(final Location loc) {
-        if (isBetterLocation(loc, previousBestLocation)) {
-            previousBestLocation = loc;
+        if (isBetterLocation(loc, PREV_BEST_LOCATION)) {
+            PREV_BEST_LOCATION = loc;
             // send the new location to the Main Activity
             // which is listening
-            sendMessageToActivity(previousBestLocation);
+            sendMessageToActivity(PREV_BEST_LOCATION);
         }
     }
 
-
+	/**
+	 * Send message about Location change
+	 * @param l Best location at the moment
+	 */
     private void sendMessageToActivity(Location l) {
+	    // Log event
         Log.d(TAG, "onLocationChanged: sending message to main activity ");
+
+	    // Create Event for change of Location
         Intent intent = new Intent("newLocation");
         Bundle b = new Bundle();
         b.putParcelable("Location", l);
@@ -89,10 +109,9 @@ public class MyLocationListener implements LocationListener {
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
-
+	// TODO what are these for?
     public void onProviderDisabled(String provider) {
     }
-
 
     public void onProviderEnabled(String provider) {
     }
@@ -100,5 +119,4 @@ public class MyLocationListener implements LocationListener {
     public void onStatusChanged(String provider, int status, Bundle extras) {
 
     }
-
 }

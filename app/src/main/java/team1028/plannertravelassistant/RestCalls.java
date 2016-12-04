@@ -89,5 +89,4 @@ public class RestCalls {
         }
         return returnedString;
     }
-
 }
