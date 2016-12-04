@@ -2,7 +2,6 @@ package team1028.plannertravelassistant;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import org.json.simple.JSONObject;
 
 /**
  * Class to calculate distances and times between Locations. Uses JSON (not XML)!
@@ -26,8 +25,9 @@ class TrafficRouter {
 		this.destinations = dest;
 	}
 
-	public double totalTravelTime(String units, String arrivalTime, String mode, String trafficModel) {
+	public String totalTravelTime(String units, String arrivalTime, String mode, String trafficModel) {
 		double totalTime = -1; // Error output is -1
+		String jsonResult;
 
 		// Check for units (default is imperial for this app)
 		if (units == null || units.equals("")) {
@@ -39,13 +39,13 @@ class TrafficRouter {
 
 		// Attempt to make request
 		try {
-			String jsonResult = RestCalls.doGet(request);
+			jsonResult = RestCalls.doGet(request);
 		} catch (IOException e) {
-			return -1; // TODO handle errors
+			return null; // TODO handle errors
 		}
 
 		// TODO parse JSON result
-		return totalTime;
+		return jsonResult;
 	}
 
 	/**
