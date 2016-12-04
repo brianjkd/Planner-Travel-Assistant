@@ -3,3 +3,6 @@
 .iml
 **/.iml
 **/*.iml
+.gradle/
+gradle/
+.gradle
