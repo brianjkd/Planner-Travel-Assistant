@@ -2,6 +2,7 @@ package team1028.plannertravelassistant;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import org.json.simple.JSONObject;
 
 /**
  * Class to calculate distances and times between Locations. Uses JSON (not XML)!
@@ -25,9 +26,16 @@ class TrafficRouter {
 		this.destinations = dest;
 	}
 
-	public double totalTravelTime(String units, String arrivalTime) {
+	public double totalTravelTime(String units, String arrivalTime, String mode, String trafficModel) {
 		double totalTime = -1; // Error output is -1
-		String request = formRequest(units, arrivalTime);
+
+		// Check for units (default is imperial for this app)
+		if (units == null || units.equals("")) {
+			units = DEFAULT_UNITS;
+		}
+
+		// Form request
+		String request = formRequest(units, arrivalTime, mode, trafficModel);
 
 		// Attempt to make request
 		try {
@@ -46,14 +54,10 @@ class TrafficRouter {
 	 * @param arrivalTime Requested arrival time (in Google API form - seconds since midnight on Jan 1, 1970)
 	 * @return Request URL to send
 	 */
-	private String formRequest(String units, String arrivalTime) {
+	private String formRequest(String units, String arrivalTime, String mode, String trafficModel) {
 		String requestURL = DIST_MAT_URL; // Request URL to add onto
 		String origReqs = origins.get(0); // TODO filter events - see if the place exists
 		String destReqs = destinations.get(0);
-
-		if (units == null || units.equals("")) {
-			units = DEFAULT_UNITS;
-		}
 
 		// Append additional origins to the request (start with second origin to reduce if statements)
 		for (int i = 1; i < origins.size(); i++) {
@@ -70,6 +74,14 @@ class TrafficRouter {
 
 		// Combine all params into the request string
 		requestURL += "units=" + units; // Units comes first, so has no "&" at beginning
+
+		// Add arrival time, if specified TODO more checks
+		if (arrivalTime != null && !arrivalTime.equals("")) {
+			requestURL +="&arrival_time=" + arrivalTime;
+		}
+
+		// TODO add mode, traffic model
+
 		requestURL += "&origins=" + origReqs;
 		requestURL += "&destinations=" + destReqs;
 		requestURL += "&key=" + API_KEY;
