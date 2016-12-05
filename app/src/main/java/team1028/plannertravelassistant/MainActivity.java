@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ArrayList<String> listItems=new ArrayList<String>();
     private ListView list;
 
+
+    // this comment is a test for the project build
+
     // permission verification method.
     public static void verifyLocationPermissions(Activity activity) {
         // Check if we have read or write permission
