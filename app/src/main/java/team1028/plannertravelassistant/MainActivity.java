@@ -17,6 +17,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ArrayList<String> listItems=new ArrayList<String>();
     private ListView list;
 
+    GoogleMap googleMap;
 
     // this comment is a test for the project build
 
@@ -101,6 +103,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         listItems.add("test 2");
         listItems.add("test 1");
         listItems.add("test 3");
+        listItems.add("test 1");
+        listItems.add("test 2");
+        listItems.add("test 1");
+        listItems.add("test 3");
 
         adapter=new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
@@ -108,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         list = (ListView) findViewById(R.id.eventList);
         list.setAdapter(adapter);
         this.startService(i);
-
     }
 
     public void onPause(){
@@ -142,15 +147,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private static final int PROJECTION_DISPLAY_NAME_INDEX = 2;
     private static final int PROJECTION_OWNER_ACCOUNT_INDEX = 3;
 
-
     @Override
     public void onMapReady(GoogleMap map) {
 
         /**
          * This is where we can add markers or lines, add listeners or move the camera. In this case,
-         * we
-         * just add a marker near Africa.
+         * we add a marker to Worcester, MA (WPI's location).
          */
-        map.addMarker(new MarkerOptions().position(new LatLng(42, -71)).title("Marker"));
+        map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
     }
+
 }
