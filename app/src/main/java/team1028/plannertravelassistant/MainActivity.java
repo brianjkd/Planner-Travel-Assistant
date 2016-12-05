@@ -27,6 +27,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 
 import java.util.ArrayList;
 
+import static team1028.plannertravelassistant.R.id.mapView;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     // Location Permissions variables
@@ -88,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
         Intent i = new Intent(this, ForegroundService.class);
 
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getSupportFragmentManager().findFragmentById(mapView);
+        mapFragment.getMapAsync(this);
+
         verifyLocationPermissions(this);
 
         // configure architecture so that this takes the event list from MyServiceIntent
@@ -102,8 +108,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         list = (ListView) findViewById(R.id.eventList);
         list.setAdapter(adapter);
         this.startService(i);
-    }
 
+    }
 
     public void onPause(){
         super.onPause();
@@ -138,7 +144,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap map) {
 
+        /**
+         * This is where we can add markers or lines, add listeners or move the camera. In this case,
+         * we
+         * just add a marker near Africa.
+         */
+        map.addMarker(new MarkerOptions().position(new LatLng(42, -71)).title("Marker"));
     }
 }
