@@ -1,5 +1,8 @@
 package team1028.plannertravelassistant;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -88,4 +91,39 @@ class TrafficRouter {
 
 		return requestURL;
 	}
+
+
+	// this method only parses for the travel duration
+	// can extend to deserialize into a java object that has fields
+	// for all the key value pairs
+	public String parseTravelDuration(String json){
+		String duration = null; // the travel duration
+		try {
+			JSONObject jsonRespRouteDuration = new JSONObject(json)
+                    .getJSONArray("rows")
+                    .getJSONObject(0)
+                    .getJSONArray ("elements")
+                    .getJSONObject(0)
+                    .getJSONObject("duration");
+
+			duration = jsonRespRouteDuration.get("text").toString();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return duration;
+	}
+
+}
+
+
+
+// TODO classes for deserialization
+
+class distance{
+}
+
+class distanceResult{
+	ArrayList<String> destination_addresses = new ArrayList<>();
+	ArrayList<String> origin_addresses = new ArrayList<>();
+	String status;
 }

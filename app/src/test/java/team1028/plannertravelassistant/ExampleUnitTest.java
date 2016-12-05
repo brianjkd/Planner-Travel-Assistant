@@ -1,11 +1,11 @@
 package team1028.plannertravelassistant;
 
-import team1028.plannertravelassistant.TrafficRouter;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -22,14 +22,21 @@ public class ExampleUnitTest {
     public void testTrafficRouter() throws Exception {
         // TODO test JSON strings
         ArrayList<String> origins = new ArrayList<>();
-        origins.add("Origin1");
+        origins.add("manchester+,+CT"); // ensure sure no spaces in the string
 
         ArrayList<String> destinations = new ArrayList<>();
-        destinations.add("Destination1");
+        destinations.add("WPI+worcester");
 
         TrafficRouter router = new TrafficRouter(origins, destinations);
 
         String json = router.totalTravelTime("imperial", null, "driving", "pessimistic");
         assertNotNull(json); // TODO what does an error look like?
+        if (json != null && !json.isEmpty()) {
+            System.out.println("returned json " + json);
+            String duration = router.parseTravelDuration(json);
+            System.out.println(duration);
+        }
     }
+
+
 }
