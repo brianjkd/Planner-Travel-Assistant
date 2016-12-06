@@ -3,15 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-places-10.0.1_172b69ff545d2c582ba07f350a35e7c6f244f6a2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-config\10.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -27,24 +18,6 @@
         revision="24.0.3"
         sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-10.0.1_c426780874ef61a60ba57994c73b3014b9b2653a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_172d822ad0640a1225c6104adeb93df27c5c7687\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.7.5\7a15a7db50f86c4b64aa3367424a60e3a325b8f1\okhttp-2.7.5.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="7a15a7db50f86c4b64aa3367424a60e3a325b8f1">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.7.5_bca5ea8462aa08645dd85b8320b1c17c03cb2f0a\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -102,15 +75,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_a655722253de61119661b469d79b253cf3e42d2b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\10.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -138,15 +102,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="92c871a22463a247e8a77a9f3fd231c278788c4a">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-10.0.1_a32d551a49d9b6024650a9ab7ced42c185042105\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-messaging\10.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -162,15 +117,6 @@
         revision="24.0.3"
         sha1="bb20e425aa641153760dbff7f5afc666f94b5647">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\me.everything-providers-android-1.0.1_6c83c9a04fa4706b26b7565918356743bca22972\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="39907d5c8f5902fffef30160ca7447c93b82405c">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-10.0.1_e5172dcc8d5fe64653a3aed89a071bb716055c3b\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -219,15 +165,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_50298f505276f720124a42b7aaefb0bd26196e34\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\10.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -243,6 +180,258 @@
         revision="24.0.3"
         sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-25.0.1_855ad5706605cb11adba9db2e8d805ff3a13ef29\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="98476622f10715998eacf9240d6b479f12c66143">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.6.0_d01718ebbe873c8698177016ebbab46022057bc0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d0460bf07cc3657e0be518ca01c174493951c6b8">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-10.0.1_1247d4b04372b2c0ee6334ca929884aa94b974df\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="a48dc0b148059764d32500be558702d5ff932058">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-10.0.1_fd12188cd344782e55ef9dc8c5a299f0f5fb0c3f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="1d193729baf37df3d902a423291423a0df7e3779">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-clearcut-10.0.1_a19d908d7580b8b7876b71f153b489399bf015b3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.0.0\jars\libs\internal_impl-24.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0_866b55d32bcf25e31b9179c440ac0c557241082a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-10.0.1_ca7bdd6302e1f8f50e242f59cb34f94e65f5fc4b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_c67180f2f845b05ef8ff9bad8c37b5b6c38674f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\palette-v7\24.0.0\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-palette-v7-24.0.0_11f111f05ed74e66d8f570489da18e106624f80a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7a64bf6dc775198eed9db9468a133adf7dfe6562">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-10.0.1_a08aea7479078af1e30374781ccefccb0ed0e831\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-10.0.1_80b98c799a7060512bc2c58b839263d386f7f600\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-10.0.1_6343d6973b7fa4155d91271900e8708737f2c19b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="b955cb3a1ad6f1b6ff728ce1e0cd592c1717b440">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-lite-10.0.1_8d812c797ff1b1a39a15b238be506ebdafc1bbb1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-10.0.1_014476287ff65eaf3233a9dbde7d78f1ec1fe076\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_4e09ba88f136dfee38ee636aac5260ffeb51aaee\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-10.0.1_3518b58d0bbdb1500d69a4ba8b492cccb90d5e48\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-iid-10.0.1_02d818183a53c7dd7079509f62f77ddfee2a0d45\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_598b7f013264cb9606a6366d6416a92311510a70\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_7bb5324c5b27169d6c87db416f4f23656347dfe3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\.gradle\caches\modules-2\files-2.1\com.google.maps\google-maps-services\0.1.16\35be1874f3f1f2a461f1ce0f409da318b6c21365\google-maps-services-0.1.16.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="35be1874f3f1f2a461f1ce0f409da318b6c21365">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-maps-services-0.1.16_70c73f8563e28cc873b100639811bbfa83bf9cb3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_bb21ff636ef8c6941df0760c1c8940d2621fe704\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-10.0.1_25a4e6a3ffa6e2bf29a9e89b724b9ac884a3e70c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-places\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-places-10.0.1_172b69ff545d2c582ba07f350a35e7c6f244f6a2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-25.0.1_172d822ad0640a1225c6104adeb93df27c5c7687\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp\okhttp\2.7.5\7a15a7db50f86c4b64aa3367424a60e3a325b8f1\okhttp-2.7.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="7a15a7db50f86c4b64aa3367424a60e3a325b8f1">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-2.7.5_bca5ea8462aa08645dd85b8320b1c17c03cb2f0a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-25.0.1_a655722253de61119661b469d79b253cf3e42d2b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="92c871a22463a247e8a77a9f3fd231c278788c4a">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-panorama-10.0.1_a32d551a49d9b6024650a9ab7ced42c185042105\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\10.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="39907d5c8f5902fffef30160ca7447c93b82405c">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-appinvite-10.0.1_e5172dcc8d5fe64653a3aed89a071bb716055c3b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="24.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-25.0.1_50298f505276f720124a42b7aaefb0bd26196e34\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -282,15 +471,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.6.0\98476622f10715998eacf9240d6b479f12c66143\okio-1.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="98476622f10715998eacf9240d6b479f12c66143">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.6.0_d01718ebbe873c8698177016ebbab46022057bc0\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
@@ -306,15 +486,6 @@
         revision="24.0.3"
         sha1="df1cb17511aabbb63264a0024949d1e42502a512">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-cast-framework-10.0.1_0f1bb4ab1c7787f6a3705a7920057c66f209c541\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="d0460bf07cc3657e0be518ca01c174493951c6b8">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-10.0.1_1247d4b04372b2c0ee6334ca929884aa94b974df\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -336,48 +507,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="a48dc0b148059764d32500be558702d5ff932058">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-identity-10.0.1_fd12188cd344782e55ef9dc8c5a299f0f5fb0c3f\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-clearcut\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="1d193729baf37df3d902a423291423a0df7e3779">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-clearcut-10.0.1_a19d908d7580b8b7876b71f153b489399bf015b3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\10.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
         sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-10.0.1_bd44eef6d67d329247513fb58d02a68d6ca70ad2\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\24.0.0\jars\libs\internal_impl-24.0.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0_866b55d32bcf25e31b9179c440ac0c557241082a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-auth\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-auth-10.0.1_ca7bdd6302e1f8f50e242f59cb34f94e65f5fc4b\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -444,66 +579,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-25.0.1_c67180f2f845b05ef8ff9bad8c37b5b6c38674f8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\palette-v7\24.0.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-palette-v7-24.0.0_11f111f05ed74e66d8f570489da18e106624f80a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="7a64bf6dc775198eed9db9468a133adf7dfe6562">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-fitness-10.0.1_a08aea7479078af1e30374781ccefccb0ed0e831\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tagmanager\10.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="24.0.3"
         sha1="971509bbe30bb7b971fc1c49d7b23d0d818830ac">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-10.0.1_d98f97ffbac687bcfa138afc35c821121e769ebb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-location-10.0.1_80b98c799a7060512bc2c58b839263d386f7f600\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-maps-10.0.1_6343d6973b7fa4155d91271900e8708737f2c19b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads-lite\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="b955cb3a1ad6f1b6ff728ce1e0cd592c1717b440">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-ads-lite-10.0.1_8d812c797ff1b1a39a15b238be506ebdafc1bbb1\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -525,42 +606,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage-common\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-common-10.0.1_014476287ff65eaf3233a9dbde7d78f1ec1fe076\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-10.0.1_4e09ba88f136dfee38ee636aac5260ffeb51aaee\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.firebase\firebase-storage\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-storage-10.0.1_3518b58d0bbdb1500d69a4ba8b492cccb90d5e48\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-iid\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-iid-10.0.1_02d818183a53c7dd7079509f62f77ddfee2a0d45\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
         jumboMode="false"
         optimize="true"
@@ -576,33 +621,6 @@
         revision="24.0.3"
         sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-10.0.1_d72ee54f5ee331f0c60fc1c3478b7389b862d9eb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-10.0.1_598b7f013264cb9606a6366d6416a92311510a70\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-10.0.1_7bb5324c5b27169d6c87db416f4f23656347dfe3\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\.gradle\caches\modules-2\files-2.1\com.google.maps\google-maps-services\0.1.16\35be1874f3f1f2a461f1ce0f409da318b6c21365\google-maps-services-0.1.16.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="35be1874f3f1f2a461f1ce0f409da318b6c21365">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\google-maps-services-0.1.16_70c73f8563e28cc873b100639811bbfa83bf9cb3\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -630,24 +648,6 @@
         revision="24.0.3"
         sha1="f23ad0f8e58713ff4b55f61c0bbde3830378347c">
         <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tagmanager-v4-impl-10.0.1_aa26c359c79c3fc35ce627d72f77532726645b06\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-25.0.1_bb21ff636ef8c6941df0760c1c8940d2621fe704\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\10.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="24.0.3"
-        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
-        <dex dex="C:\Users\Brian\Documents\mobubiq\PlannerTravelAssistant\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-10.0.1_25a4e6a3ffa6e2bf29a9e89b724b9ac884a3e70c\classes.dex" />
     </item>
     <item
         is-multidex="true"
