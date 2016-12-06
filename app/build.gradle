@@ -26,5 +26,7 @@ dependencies {
     })
     compile 'com.google.maps:google-maps-services:0.1.16'
     compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'me.everything:providers-android:1.0.1'
+    compile 'com.google.android.gms:play-services:10.0.1'
     testCompile 'junit:junit:4.12'
 }
