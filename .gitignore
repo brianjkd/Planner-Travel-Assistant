@@ -6,3 +6,5 @@
 .gradle/
 gradle/
 .gradle
+local.properties
+/build

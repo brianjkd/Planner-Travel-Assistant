@@ -1,12 +1,9 @@
 package team1028.plannertravelassistant;
 
 import android.content.Context;
-import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
 class MyLocationListener implements LocationListener {
     private static final int TWO_MINUTES = 1000 * 60 * 2; // TODO did I rename this correctly?
@@ -14,6 +11,12 @@ class MyLocationListener implements LocationListener {
     private Location PREV_BEST_LOCATION = null;
 
     private Context context;
+
+
+
+    public Location getLocation(){
+        return this.PREV_BEST_LOCATION;
+    }
 
     MyLocationListener(Context context) {
         super();
@@ -89,24 +92,8 @@ class MyLocationListener implements LocationListener {
             PREV_BEST_LOCATION = loc;
             // send the new location to the Main Activity
             // which is listening
-            sendMessageToActivity(PREV_BEST_LOCATION);
+            //sendMessageToActivity(PREV_BEST_LOCATION);
         }
-    }
-
-	/**
-	 * Send message about Location change
-	 * @param l Best location at the moment
-	 */
-    private void sendMessageToActivity(Location l) {
-	    // Log event
-        Log.d(TAG, "onLocationChanged: sending message to main activity ");
-
-	    // Create Event for change of Location
-        Intent intent = new Intent("newLocation");
-        Bundle b = new Bundle();
-        b.putParcelable("Location", l);
-        intent.putExtra("Location", b);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
 
 	// TODO what are these for?

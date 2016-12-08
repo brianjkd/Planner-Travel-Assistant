@@ -8,13 +8,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.location.LocationManager;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
 public class ForegroundService extends Service {
     private static final String TAG = "ForegroundService";
-    private static final int LOCATION_INTERVAL = 2 * 60 * 1000; // 2 minutes
-    private static final float LOCATION_DISTANCE = 150f; // 150 meters
+    private static final int LOCATION_INTERVAL = 8 * 60 * 1000; // 8 minutes
+    private static final float LOCATION_DISTANCE = 500f; // 500 meters
 
     private final long WAIT_TIME = 30 * 1000; // sleepy time for the thread
 
@@ -44,8 +45,6 @@ public class ForegroundService extends Service {
         Log.d(TAG, "startListener: ");
         try {
 	        locationManager.removeUpdates(listener);
-//        } catch (SecurityException e) {}
-//        try {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, listener);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, listener);
         } catch (SecurityException e) {
@@ -103,7 +102,10 @@ public class ForegroundService extends Service {
                     Thread.sleep(WAIT_TIME);
                     // launch a ServiceIntent
                     Intent i = new Intent(ForegroundService.this, MyServiceIntent.class);
-                    // i.putExtra("somedata", somedata); // put some data in the service intent
+
+                    Bundle b = new Bundle();
+                    b.putParcelable("Location", listener.getLocation());
+                    i.putExtra("Location", b);
                     ForegroundService.this.startService(i); // start the service intent
                 }
             } catch (InterruptedException e) {

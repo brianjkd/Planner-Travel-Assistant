@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
@@ -17,14 +16,11 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 
 import java.util.ArrayList;
 
@@ -33,7 +29,7 @@ import static team1028.plannertravelassistant.R.id.mapView;
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 	public static final String TAG = "MainActivity"; // TODO add description
 
-	Location curLocation; // Store current location
+    ArrayList<String> locations = new ArrayList<String>(); // event locations as strings
 
     // Location Permissions variables
     private static final int REQUEST_CODE = 201;
@@ -42,10 +38,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_CALENDAR
     };
     ArrayAdapter<String> adapter;
-    ArrayList<String> listItems=new ArrayList<String>();
+    ArrayList<String> listItems = new ArrayList<String>();
     private ListView list;
-
-    GoogleMap googleMap;
 
     // this comment is a test for the project build
 
@@ -67,22 +61,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    // this receiver can receive data from the foreground service
+    // this receiver can receive data from other services
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive: we got a message"); // Log actions
 
 	        // TODO add descriptive comments
-            Bundle b = intent.getBundleExtra("Location");
-            Location lastKnownLoc = b.getParcelable("Location");
+            ArrayList<String> receivedLocations = intent.getStringArrayListExtra("locationList");
 
-	        // Check that location is valid
-            if (lastKnownLoc != null) {
-                Log.d(TAG, "onReceive: We got a location from service");
-                curLocation = lastKnownLoc; // update the location field for this activity
+	        // Check that location list is valid
+            if (receivedLocations != null) {
+                Log.d(TAG, "onReceive: We got a list of locations from MyServiceIntent");
+                locations = receivedLocations;
+                for (String l : locations){
+                    Log.d(TAG, l);
+                }
             } else {
-                Log.d(TAG, "onReceive: We did not get a location from service");
+                Log.d(TAG, "onReceive: We did not get a list of locations from MyServiceIntent");
             }
         }
     };
@@ -127,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onResume();
         // listen for intents with the filter "newLocation"
         LocalBroadcastManager.getInstance(this).registerReceiver(
-                mMessageReceiver, new IntentFilter("newLocation"));
+                mMessageReceiver, new IntentFilter("locations"));
     }
 
 
