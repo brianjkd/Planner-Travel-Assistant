@@ -14,6 +14,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -23,13 +24,23 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import static team1028.plannertravelassistant.R.id.expListView; // TODO is this needed?
 import static team1028.plannertravelassistant.R.id.mapView;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 	public static final String TAG = "MainActivity"; // TODO add description
 
     ArrayList<String> locations = new ArrayList<String>(); // event locations as strings
+
+	// TODO are these ok?
+	// The indices for the projection array above.
+	private static final int PROJECTION_ID_INDEX = 0;
+	private static final int PROJECTION_ACCOUNT_NAME_INDEX = 1;
+	private static final int PROJECTION_DISPLAY_NAME_INDEX = 2;
+	private static final int PROJECTION_OWNER_ACCOUNT_INDEX = 3;
 
     // Location Permissions variables
     private static final int REQUEST_CODE = 201;
@@ -40,6 +51,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ArrayAdapter<String> adapter;
     ArrayList<String> listItems = new ArrayList<String>();
     private ListView list;
+
+	// Expandable List View stuffs
+	ExpandableListAdapter listAdapter;
+	ExpandableListView listView;
+	List<String> listDataHeader;
+	HashMap<String, List<String>> listDataChild;
 
     // this comment is a test for the project build
 
@@ -95,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         verifyLocationPermissions(this);
 
+	    // TODO why is this here?
         // configure architecture so that this takes the event list from MyServiceIntent
         listItems.add("test 1");
         listItems.add("test 2");
@@ -111,7 +129,57 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         list = (ListView) findViewById(R.id.eventList);
         list.setAdapter(adapter);
         this.startService(i);
+
+	    // Handle details for Expandable List
+	    listView = (ExpandableListView)findViewById(R.id.expListView); // Get list view
+//	    prepListData(); // Prepare data
+	    listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+	    listView.setAdapter(listAdapter);
+
     }
+
+	/**
+	 * Add data
+	 * TODO change - copied over from example
+	 */
+	private void prepListData() {
+		listDataHeader = new ArrayList<String>();
+		listDataChild = new HashMap<String, List<String>>();
+
+		// Adding child data
+		listDataHeader.add("Top 250");
+		listDataHeader.add("Now Showing");
+		listDataHeader.add("Coming Soon..");
+
+		// Adding child data
+		List<String> top250 = new ArrayList<String>();
+		top250.add("The Shawshank Redemption");
+		top250.add("The Godfather");
+		top250.add("The Godfather: Part II");
+		top250.add("Pulp Fiction");
+		top250.add("The Good, the Bad and the Ugly");
+		top250.add("The Dark Knight");
+		top250.add("12 Angry Men");
+
+		List<String> nowShowing = new ArrayList<String>();
+		nowShowing.add("The Conjuring");
+		nowShowing.add("Despicable Me 2");
+		nowShowing.add("Turbo");
+		nowShowing.add("Grown Ups 2");
+		nowShowing.add("Red 2");
+		nowShowing.add("The Wolverine");
+
+		List<String> comingSoon = new ArrayList<String>();
+		comingSoon.add("2 Guns");
+		comingSoon.add("The Smurfs 2");
+		comingSoon.add("The Spectacular Now");
+		comingSoon.add("The Canyons");
+		comingSoon.add("Europa Report");
+
+		listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
+		listDataChild.put(listDataHeader.get(1), nowShowing);
+		listDataChild.put(listDataHeader.get(2), comingSoon);
+	}
 
     public void onPause(){
         super.onPause();
@@ -126,8 +194,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 mMessageReceiver, new IntentFilter("locations"));
     }
 
-
-
     // calendar stuff
     // Projection array. Creating indices for this array instead of doing
 // dynamic lookups improves performance.
@@ -137,13 +203,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,         // 2
             CalendarContract.Calendars.OWNER_ACCOUNT                  // 3
     };
-
-    // TODO when will these be used?
-    // The indices for the projection array above.
-    private static final int PROJECTION_ID_INDEX = 0;
-    private static final int PROJECTION_ACCOUNT_NAME_INDEX = 1;
-    private static final int PROJECTION_DISPLAY_NAME_INDEX = 2;
-    private static final int PROJECTION_OWNER_ACCOUNT_INDEX = 3;
 
     @Override
     public void onMapReady(GoogleMap map) {
