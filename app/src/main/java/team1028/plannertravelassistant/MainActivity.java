@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
 
 import me.everything.providers.android.calendar.Event;
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 	public static final String TAG = "MainActivity"; // TODO add description
 
     ArrayList<Event> events = new ArrayList<Event>(); // events from user's calendar
+	ArrayList<GeoLocation> eventLocations = new ArrayList<GeoLocation>(); // list of locations obtained from events list
 
 	// TODO are these ok?
 	// The indices for the projection array above.
@@ -187,7 +190,8 @@ public class MainActivity extends AppCompatActivity {
 		Intent mapIntent = new Intent(this, MapActivity.class);
 
 		// TODO add extras?
-
+		Log.d(TAG, "Sending message to map activity with list of event locations");
+		mapIntent.putExtra("events", new EventListWrapper(events));
 		startActivity(mapIntent);
 	}
 

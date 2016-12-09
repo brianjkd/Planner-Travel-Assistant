@@ -1,9 +1,13 @@
 package team1028.plannertravelassistant;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
@@ -28,17 +32,23 @@ import static team1028.plannertravelassistant.MainActivity.verifyLocationPermiss
  * Created by Maddy on 12/9/2016.
  */
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
+	public static final String TAG = "MapActivity"; // TODO add description
+
 	// Expandable List View stuffs
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
 
-	private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
+	ArrayList<GeoLocation> eventLocations;
 
-	private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
+	private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
 
 	private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
 
 	private static final LatLng PERTH = new LatLng(-31.95285, 115.85734);
+
+	ArrayList<LatLng> coordinates;
+	ArrayList<String> testStrings = new ArrayList<String>();
+	ArrayList<LatLng> testLocations = new ArrayList<LatLng>();
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -51,10 +61,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		// Important!
 		verifyLocationPermissions(this);
 
+		//coordinates = savedInstanceState.getParcelableArrayList("events");
+		testStrings.add("Winchester");
+		testStrings.add("Worcester");
+		testStrings.add("WPI");
+		testLocations = getLocationFromAddress(testStrings);
+
 		// Prep map
 		SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager()
 				.findFragmentById(R.id.mapView);
-        mapFragment.getMapAsync(this);
+		mapFragment.getMapAsync(this);
 
 		// Handle details for Expandable List
 		expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
@@ -107,17 +123,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	 */
 	@Override
 	public void onMapReady(GoogleMap map) {
-		map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
-		map.addPolyline((new PolylineOptions()).add(MELBOURNE, ADELAIDE, PERTH));
-		map.moveCamera(CameraUpdateFactory.newLatLng(MELBOURNE));
+		//map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
+
+		//map.addPolyline((new PolylineOptions()).add(MELBOURNE, ADELAIDE, PERTH));
+		map.addPolyline((new PolylineOptions()).addAll(testLocations));
+		map.moveCamera(CameraUpdateFactory.newLatLng(testLocations.get(0)));
 
 		updateView();
 	}
 
-	public LatLng getLocationFromAddress(ArrayList<String> eventLocations){
+	public ArrayList<LatLng> getLocationFromAddress(ArrayList<String> eventLocations){
 		Geocoder coder = new Geocoder(this);
 		List<Address> address = new ArrayList<Address>();
 		LatLng p1 = null;
+		ArrayList<LatLng> locations = new ArrayList<LatLng>();
 
 		for (String strAddress : eventLocations) {
 			try {
@@ -135,13 +154,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 				p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
-//				return p1;
+				locations.add(p1);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
-		return p1;
+		return locations;
 	}
 
 }
