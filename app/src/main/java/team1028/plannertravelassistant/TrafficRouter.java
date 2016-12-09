@@ -33,7 +33,6 @@ class TrafficRouter {
 	}
 
 	public String getTrafficJson(String units, String arrivalTime, String mode, String trafficModel) {
-		double totalTime = -1; // Error output is -1
 		String jsonResult;
 
 		// Check for units (default is imperial for this app)
@@ -129,12 +128,12 @@ class TrafficRouter {
 
 
 // TODO classes for deserialization
-
-class distance{
-}
-
-class distanceResult{
-	ArrayList<String> destination_addresses = new ArrayList<>();
-	ArrayList<String> origin_addresses = new ArrayList<>();
-	String status;
-}
+// TODO why are these in the same file???
+//class distance{
+//}
+//
+//class distanceResult{
+//	ArrayList<String> destination_addresses = new ArrayList<>();
+//	ArrayList<String> origin_addresses = new ArrayList<>();
+//	String status;
+//}
