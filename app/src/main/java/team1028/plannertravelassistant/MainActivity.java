@@ -18,19 +18,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import me.everything.providers.android.calendar.Event;
+
 public class MainActivity extends AppCompatActivity {
 	public static final String TAG = "MainActivity"; // TODO add description
 
-    ArrayList<String> locations = new ArrayList<String>(); // event locations as strings
+    ArrayList<Event> events = new ArrayList<Event>(); // events from user's calendar
 
 	// TODO are these ok?
 	// The indices for the projection array above.
@@ -82,15 +79,16 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive: we got a message"); // Log actions
 
-	        // TODO add descriptive comments
-            ArrayList<String> receivedLocations = intent.getStringArrayListExtra("locationList");
+            // TODO add descriptive comments
+            EventListWrapper eventListWrapper = (EventListWrapper) intent.getSerializableExtra("events");
+            ArrayList<Event> receivedEvents = eventListWrapper.getEvents();
 
-	        // Check that location list is valid
-            if (receivedLocations != null) {
-                Log.d(TAG, "onReceive: We got a list of locations from MyServiceIntent");
-                locations = receivedLocations;
-                for (String l : locations){
-                    Log.d(TAG, l);
+            // Check that location list is valid
+            if (receivedEvents != null) {
+                Log.d(TAG, "onReceive: We got a list of " + receivedEvents.size() + " locations from MyServiceIntent");
+                events = receivedEvents;
+                for (Event e : events){
+                    Log.d(TAG, e.title);
                 }
             } else {
                 Log.d(TAG, "onReceive: We did not get a list of locations from MyServiceIntent");
