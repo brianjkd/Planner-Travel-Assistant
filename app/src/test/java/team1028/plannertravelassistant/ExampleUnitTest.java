@@ -14,11 +14,6 @@ import static org.junit.Assert.assertNotNull;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
-    }
-
-    @Test
     public void testTrafficRouter() throws Exception {
         // TODO test JSON strings
         ArrayList<String> origins = new ArrayList<>();

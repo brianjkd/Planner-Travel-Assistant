@@ -32,8 +32,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
-		Intent i = new Intent(this, ForegroundService.class);
 
+		// TODO handled in MainActivity?
+//		Intent i = new Intent(this, ForegroundService.class);
+//		startActivity(i);
+
+		// Important!
 		verifyLocationPermissions(this);
 
 		// Prep map
@@ -48,7 +52,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 		// Error checking
 		if (expListView == null) {
-			System.out.println("Error: expListView is null!");
+			System.out.println("ERROR: expListView is null!");
 			return;
 		}
 
