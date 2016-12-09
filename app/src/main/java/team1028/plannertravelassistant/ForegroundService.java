@@ -87,9 +87,9 @@ public class ForegroundService extends Service implements
     public void onConnected(Bundle connectionHint) {
             Log.d(TAG, "onConnected: ");
             locationRequest = new LocationRequest();
-            locationRequest.setInterval(10);
-            locationRequest.setFastestInterval(10);
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+            locationRequest.setInterval(1000 * 60);
+            locationRequest.setFastestInterval(1000 * 30);
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         startLocationUpdates();
         // TODO handle runtime permission rather than wrapping in a try catch

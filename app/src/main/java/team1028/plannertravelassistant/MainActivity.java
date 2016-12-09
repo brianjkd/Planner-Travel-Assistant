@@ -24,12 +24,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import me.everything.providers.android.calendar.Event;
+
 import static team1028.plannertravelassistant.R.id.mapView;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 	public static final String TAG = "MainActivity"; // TODO add description
 
-    ArrayList<String> locations = new ArrayList<String>(); // event locations as strings
+    ArrayList<Event> events = new ArrayList<Event>(); // events from user's calendar
 
     // Location Permissions variables
     private static final int REQUEST_CODE = 201;
@@ -68,14 +70,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.d(TAG, "onReceive: we got a message"); // Log actions
 
 	        // TODO add descriptive comments
-            ArrayList<String> receivedLocations = intent.getStringArrayListExtra("locationList");
+            EventListWrapper eventListWrapper = (EventListWrapper) intent.getSerializableExtra("events");
+            ArrayList<Event> receivedEvents = eventListWrapper.getEvents();
 
 	        // Check that location list is valid
-            if (receivedLocations != null) {
-                Log.d(TAG, "onReceive: We got a list of locations from MyServiceIntent");
-                locations = receivedLocations;
-                for (String l : locations){
-                    Log.d(TAG, l);
+            if (receivedEvents != null) {
+                Log.d(TAG, "onReceive: We got a list of " + receivedEvents.size() + " locations from MyServiceIntent");
+                events = receivedEvents;
+                for (Event e : events){
+                    Log.d(TAG, e.title);
                 }
             } else {
                 Log.d(TAG, "onReceive: We did not get a list of locations from MyServiceIntent");
@@ -125,8 +128,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 mMessageReceiver, new IntentFilter("locations"));
     }
-
-
 
     // calendar stuff
     // Projection array. Creating indices for this array instead of doing

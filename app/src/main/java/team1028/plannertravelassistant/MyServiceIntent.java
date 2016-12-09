@@ -129,12 +129,11 @@ public class MyServiceIntent extends IntentService {
                     Log.d(TAG, "onHandleIntent: traffic lookup failed");
                 }
             }
-
                 // send the filtered list of location names to the main activity so it can draw to
                 // note, the locations sent to main activity have location strings but they may be invalid locations
                 // use geocoder on main activity since the lat lon coordinates still need to be extracted
                 ArrayList<String> locations = getLocations(filteredEvents);
-                sendMessageToActivity(locations);
+                sendMessageToActivity(filteredEvents);
             }
             else {
                 Log.d(TAG, "onHandleIntent: user's current location is null");
@@ -170,7 +169,6 @@ public class MyServiceIntent extends IntentService {
             }
         });
 
-
         return filtered;
     }
 
@@ -186,11 +184,14 @@ public class MyServiceIntent extends IntentService {
     }
 
 
-    private void sendMessageToActivity(ArrayList<String> locations) {
+    private void sendMessageToActivity(ArrayList<Event> events) {
         Log.d(TAG, "Sending message to main activity with list of locations as strings");
         // Create Event for change of Location
         Intent intent = new Intent("locations");
-        intent.putStringArrayListExtra("locationList", locations);
+
+        intent.putExtra("events", new EventListWrapper(events));
+
+        //intent.putStringArrayListExtra("locationList", locations);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
