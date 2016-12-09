@@ -19,16 +19,12 @@ import android.widget.ListView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import static team1028.plannertravelassistant.R.id.mapView;
-import static team1028.plannertravelassistant.R.id.lvExp;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 	public static final String TAG = "MainActivity"; // TODO add description
@@ -133,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //        this.startService(i);
 
 	    // Handle details for Expandable List
-	    expListView = (ExpandableListView)findViewById(R.id.lvExp); // Get list view
+	    expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
 	    prepListData(); // Prepare data
 	    listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 

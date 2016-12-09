@@ -24,7 +24,7 @@
 
             <Button
                 android:text="View Map"
-                android:layout_width="173dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/btnMapView"
                 />
@@ -54,7 +54,7 @@
             android:textAlignment="center"/>
 
         <ExpandableListView
-            android:id="@+id/lvExp"
+            android:id="@+id/viewExpandList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
