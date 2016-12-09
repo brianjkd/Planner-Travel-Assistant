@@ -28,5 +28,5 @@ dependencies {
     compile 'me.everything:providers-android:1.0.1'
     compile 'com.google.android.gms:play-services:10.0.1'
     testCompile 'junit:junit:4.12'
-//    testCompile 'org.json:json:20160810' // TODO is this needed?
+    testCompile 'org.json:json:20160810' // Needed for JSON unit testing
 }

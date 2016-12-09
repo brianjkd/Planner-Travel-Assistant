@@ -135,7 +135,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 				p1 = new LatLng(location.getLatitude(), location.getLongitude());
 
-				return p1;
+//				return p1;
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

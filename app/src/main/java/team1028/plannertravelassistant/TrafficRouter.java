@@ -86,6 +86,15 @@ class TrafficRouter {
 			requestURL +="&arrival_time=" + arrivalTime;
 		}
 
+		// TODO for some reason this causes errors
+//		if (trafficModel != null && !trafficModel.equals("")) {
+//			requestURL += "&traffic_model=" + trafficModel;
+//		}
+
+		if (mode != null && !mode.equals("")) {
+			requestURL += "&mode=" + mode;
+		}
+
 		// TODO add mode, traffic model
 
 		requestURL += "&origins=" + origReqs;
@@ -106,13 +115,14 @@ class TrafficRouter {
 					.getJSONObject(0);
 			String status  = jsonRespStatusOK.get("status").toString();
 
-			if (status.equals("OK")){
+			if (status.equals("OK")) {
 				JSONObject jsonRespRouteDuration = new JSONObject(json)
 						.getJSONArray("rows")
 						.getJSONObject(0)
 						.getJSONArray ("elements")
 						.getJSONObject(0)
 						.getJSONObject("duration");
+				// Get event duration in seconds
 				duration = Float.parseFloat( jsonRespRouteDuration.get("value").toString());
 			}
 		} catch (JSONException e) {
