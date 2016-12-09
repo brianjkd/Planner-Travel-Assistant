@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_map);
         Intent i = new Intent(this, ForegroundService.class);
 
         SupportMapFragment mapFragment =
@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             CalendarContract.Calendars.OWNER_ACCOUNT                  // 3
     };
 
+    // TODO when will these be used?
     // The indices for the projection array above.
     private static final int PROJECTION_ID_INDEX = 0;
     private static final int PROJECTION_ACCOUNT_NAME_INDEX = 1;
