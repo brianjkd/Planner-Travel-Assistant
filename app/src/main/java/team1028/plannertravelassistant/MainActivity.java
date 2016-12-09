@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MainActivity extends AppCompatActivity {
 	public static final String TAG = "MainActivity"; // TODO add description
 
     ArrayList<String> locations = new ArrayList<String>(); // event locations as strings
@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                listItems);
 //        list = (ListView) findViewById(R.id.eventList);
 //        list.setAdapter(adapter);
-//        this.startService(i);
 
 	    // Handle details for Expandable List
 	    expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
@@ -140,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 	    }
 
 	    expListView.setAdapter(listAdapter);
+        this.startService(i); // TODO where to put this?
     }
 
 	/**
@@ -193,15 +193,4 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,         // 2
             CalendarContract.Calendars.OWNER_ACCOUNT                  // 3
     };
-
-    @Override
-    public void onMapReady(GoogleMap map) {
-
-        /**
-         * This is where we can add markers or lines, add listeners or move the camera. In this case,
-         * we add a marker to Worcester, MA (WPI's location).
-         */
-        map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
-    }
-
 }
