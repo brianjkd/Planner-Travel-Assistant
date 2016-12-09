@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 	    // Handle details for Expandable List
 	    listView = (ExpandableListView)findViewById(R.id.expListView); // Get list view
-//	    prepListData(); // Prepare data
+	    prepListData(); // Prepare data
 	    listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 	    listView.setAdapter(listAdapter);
 
@@ -147,38 +147,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 		listDataChild = new HashMap<String, List<String>>();
 
 		// Adding child data
-		listDataHeader.add("Top 250");
-		listDataHeader.add("Now Showing");
-		listDataHeader.add("Coming Soon..");
+		listDataHeader.add("Event 1");
+		listDataHeader.add("Event 2");
+		listDataHeader.add("Event 3");
 
 		// Adding child data
-		List<String> top250 = new ArrayList<String>();
-		top250.add("The Shawshank Redemption");
-		top250.add("The Godfather");
-		top250.add("The Godfather: Part II");
-		top250.add("Pulp Fiction");
-		top250.add("The Good, the Bad and the Ugly");
-		top250.add("The Dark Knight");
-		top250.add("12 Angry Men");
+		List<String> event1 = new ArrayList<String>();
+		event1.add("time: 1am");
 
-		List<String> nowShowing = new ArrayList<String>();
-		nowShowing.add("The Conjuring");
-		nowShowing.add("Despicable Me 2");
-		nowShowing.add("Turbo");
-		nowShowing.add("Grown Ups 2");
-		nowShowing.add("Red 2");
-		nowShowing.add("The Wolverine");
+		List<String> event2 = new ArrayList<String>();
+		event2.add("time: 2pm");
+		event2.add("location: Worcester");
 
-		List<String> comingSoon = new ArrayList<String>();
-		comingSoon.add("2 Guns");
-		comingSoon.add("The Smurfs 2");
-		comingSoon.add("The Spectacular Now");
-		comingSoon.add("The Canyons");
-		comingSoon.add("Europa Report");
+		List<String> event3 = new ArrayList<String>();
+		event3.add("time: 9am");
 
-		listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-		listDataChild.put(listDataHeader.get(1), nowShowing);
-		listDataChild.put(listDataHeader.get(2), comingSoon);
+		listDataChild.put(listDataHeader.get(0), event1); // Header, Child data
+		listDataChild.put(listDataHeader.get(1), event2);
+		listDataChild.put(listDataHeader.get(2), event3);
 	}
 
     public void onPause(){

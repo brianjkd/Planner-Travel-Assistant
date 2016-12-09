@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Class to interface with ExpandableListView
+ * Code from http://www.androidhive.info/2013/07/android-expandable-list-view-tutorial/
  * Created by Maddy on 12/9/2016.
  */
 class ExpandableListAdapter extends BaseExpandableListAdapter {
