@@ -7,56 +7,53 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.location.LocationManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
-public class ForegroundService extends Service {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+
+public class ForegroundService extends Service implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
     private static final String TAG = "ForegroundService";
-    private static final int LOCATION_INTERVAL = 8 * 60 * 1000; // 8 minutes
-    private static final float LOCATION_DISTANCE = 500f; // 500 meters
 
     private final long WAIT_TIME = 30 * 1000; // sleepy time for the thread
 
-    SomeThread R1; // TODO describe
 
-    // TODO use Fused Location Services rather than MyLocationListener
-    public LocationManager locationManager;
-    public MyLocationListener listener;
+    private GoogleApiClient googleApiClient;
+    private Location lastLocation = null;
+    private LocationRequest locationRequest;
+
+
+    SomeThread R1; // TODO describe
 
     // only called once, when a service has not been created
     @Override
     public void onCreate() {
-        super.onCreate();
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        listener = new MyLocationListener(this.getApplicationContext());
+        Log.d(TAG, "onCreate: ");
 
-        startListener();
-
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
         R1 = new SomeThread( "planner travel assistant thread");
         R1.start();
+        super.onCreate();
     }
 
-	/**
-     * TODO add descriptive comments
-     */
-    public void startListener() {
-        Log.d(TAG, "startListener: ");
-        try {
-	        locationManager.removeUpdates(listener);
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, listener);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, LOCATION_INTERVAL, LOCATION_DISTANCE, listener);
-        } catch (SecurityException e) {
-	        // TODO add catch
-	        e.printStackTrace();
-        }
-    }
 
     // called multiple times potentially;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        Log.d(TAG, "onStartCommand: ");
+        googleApiClient.connect();
         // create our notification and start this service as a foreground service
         NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
         Intent notificationIntent = new Intent(this, MainActivity.class);
@@ -77,6 +74,48 @@ public class ForegroundService extends Service {
 
         super.onStartCommand(intent, flags, startId);
         return START_NOT_STICKY;
+    }
+
+
+    protected void startLocationUpdates() {
+        Log.d(TAG, "startLocationUpdates: Called start location updates");
+        try {LocationServices.FusedLocationApi.requestLocationUpdates(
+                googleApiClient, locationRequest, this);} catch (SecurityException e){}
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+            Log.d(TAG, "onConnected: ");
+            locationRequest = new LocationRequest();
+            locationRequest.setInterval(10);
+            locationRequest.setFastestInterval(10);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        startLocationUpdates();
+        // TODO handle runtime permission rather than wrapping in a try catch
+        try { Location temp = LocationServices.FusedLocationApi.getLastLocation(
+                googleApiClient);
+            if (temp != null) {
+                lastLocation = temp;
+            }
+        }
+        catch (SecurityException e){}
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d(TAG, "onLocationChanged: ");
+        lastLocation = location;
     }
 
     // TODO use alarm manager instead of a thread to launch small IntentServices
@@ -104,7 +143,8 @@ public class ForegroundService extends Service {
                     Intent i = new Intent(ForegroundService.this, MyServiceIntent.class);
 
                     Bundle b = new Bundle();
-                    b.putParcelable("Location", listener.getLocation());
+
+                    b.putParcelable("Location", lastLocation);
                     i.putExtra("Location", b);
                     ForegroundService.this.startService(i); // start the service intent
                 }
@@ -137,11 +177,11 @@ public class ForegroundService extends Service {
 
     @Override
     public void onDestroy() {
-        super.onDestroy();
         R1.stop(); // stop repeating MyServiceIntent
-        try {
-            locationManager.removeUpdates(listener);
-        } catch (SecurityException e) {}
+        LocationServices.FusedLocationApi.removeLocationUpdates(
+                googleApiClient, this);
+        googleApiClient.disconnect();
+        super.onDestroy();
     }
 
 }
