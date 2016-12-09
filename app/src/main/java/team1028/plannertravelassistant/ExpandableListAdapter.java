@@ -50,12 +50,14 @@ class ExpandableListAdapter extends BaseExpandableListAdapter {
 		if (convertView == null) {
 			LayoutInflater infalInflator = (LayoutInflater)this.context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			convertView = infalInflator.inflate(R.layout.list_group, null);
+			convertView = infalInflator.inflate(R.layout.list_item, null);
 		}
 
 		// Update view
 		TextView txtListChild = (TextView)convertView.findViewById(R.id.lblListItem);
-		txtListChild.setText(childText);
+		if (childText != null && txtListChild != null) {
+			txtListChild.setText(childText);
+		}
 		return convertView;
 	}
 

@@ -27,8 +27,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static team1028.plannertravelassistant.R.id.expListView; // TODO is this needed?
 import static team1028.plannertravelassistant.R.id.mapView;
+import static team1028.plannertravelassistant.R.id.lvExp;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
 	public static final String TAG = "MainActivity"; // TODO add description
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 	// Expandable List View stuffs
 	ExpandableListAdapter listAdapter;
-	ExpandableListView listView;
+	ExpandableListView expListView;
 	List<String> listDataHeader;
 	HashMap<String, List<String>> listDataChild;
 
@@ -103,39 +103,47 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_main);
         Intent i = new Intent(this, ForegroundService.class);
 
-        SupportMapFragment mapFragment =
-                (SupportMapFragment) getSupportFragmentManager().findFragmentById(mapView);
-        mapFragment.getMapAsync(this);
+	    // TODO move to MapActivity
+//        SupportMapFragment mapFragment =
+//                (SupportMapFragment) getSupportFragmentManager().findFragmentById(mapView);
+//        mapFragment.getMapAsync(this);
 
         verifyLocationPermissions(this);
 
 	    // TODO why is this here?
         // configure architecture so that this takes the event list from MyServiceIntent
-        listItems.add("test 1");
-        listItems.add("test 2");
-        listItems.add("test 1");
-        listItems.add("test 3");
-        listItems.add("test 1");
-        listItems.add("test 2");
-        listItems.add("test 1");
-        listItems.add("test 3");
+//        listItems.add("test 1");
+//        listItems.add("test 2");
+//        listItems.add("test 1");
+//        listItems.add("test 3");
+//        listItems.add("test 1");
+//        listItems.add("test 2");
+//        listItems.add("test 1");
+//        listItems.add("test 3");
 
-        adapter=new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,
-                listItems);
-        list = (ListView) findViewById(R.id.eventList);
-        list.setAdapter(adapter);
-        this.startService(i);
+//	    // TODO specify adapter type
+//        adapter=new ArrayAdapter<String>(this,
+//                android.R.layout.simple_list_item_1,
+//                listItems);
+//        list = (ListView) findViewById(R.id.eventList);
+//        list.setAdapter(adapter);
+//        this.startService(i);
 
 	    // Handle details for Expandable List
-	    listView = (ExpandableListView)findViewById(R.id.expListView); // Get list view
+	    expListView = (ExpandableListView)findViewById(R.id.lvExp); // Get list view
 	    prepListData(); // Prepare data
 	    listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-	    listView.setAdapter(listAdapter);
 
+	    // Error checking
+	    if (expListView == null) {
+		    System.out.println("Error: expListView is null!");
+		    return;
+	    }
+
+	    expListView.setAdapter(listAdapter);
     }
 
 	/**
