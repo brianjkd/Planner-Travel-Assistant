@@ -3,12 +3,15 @@ package team1028.plannertravelassistant;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import me.everything.providers.android.calendar.Event;
 
 import static team1028.plannertravelassistant.MainActivity.verifyLocationPermissions;
 
@@ -48,7 +51,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		}
 
 		expListView.setAdapter(listAdapter);
-		listAdapter.addGroup("No Events");
+	}
+
+	/**
+	 * Update View elements
+	 */
+	private void updateView() {
+		// Update travel time
+		TextView travelTime = (TextView)findViewById(R.id.textTravelTimeMap);
+		String travelTimeString = "0 minutes";
+		travelTime.setText(travelTimeString);
+
+		// TODO store Events list
+//		// Update list of events TODO test
+//		if (this.events.size() > 0) {
+//			for (Event e : events) {
+//				int newIndex = listAdapter.addGroup(e.displayName);
+//
+//				listAdapter.addChild(newIndex, e.description);
+//				listAdapter.addChild(newIndex, e.eventLocation);
+//				listAdapter.addChild(newIndex, e.duration);
+//			}
+//		}
 	}
 
 	public void onPause() {
