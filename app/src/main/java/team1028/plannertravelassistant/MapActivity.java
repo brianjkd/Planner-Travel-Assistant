@@ -67,6 +67,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		}
 
 		expListView.setAdapter(listAdapter);
+		updateView();
 	}
 
 	/**
@@ -75,7 +76,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	private void updateView() {
 		// Update travel time
 		TextView travelTime = (TextView)findViewById(R.id.textTravelTimeMap);
-		String travelTimeString = "0 minutes";
+		String travelTimeString = "Travel Time: 0 min";
 		travelTime.setText(travelTimeString);
 
 		// TODO store Events list
@@ -109,6 +110,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
 		map.addPolyline((new PolylineOptions()).add(MELBOURNE, ADELAIDE, PERTH));
 		map.moveCamera(CameraUpdateFactory.newLatLng(MELBOURNE));
+
+		updateView();
 	}
 
 	public LatLng getLocationFromAddress(ArrayList<String> eventLocations){

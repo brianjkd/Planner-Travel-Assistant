@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
 	// TODO implement
 	private String calcTravelTime() {
-		return "0 minutes";
+		return "0 min";
 	}
 
 	/**
