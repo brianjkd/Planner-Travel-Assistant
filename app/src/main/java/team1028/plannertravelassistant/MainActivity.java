@@ -23,20 +23,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-
-
-import me.everything.providers.android.calendar.Event;
-
-import static team1028.plannertravelassistant.R.id.mapView;
-
 import java.util.HashMap;
 import java.util.List;
 
-
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class MainActivity extends AppCompatActivity {
 	public static final String TAG = "MainActivity"; // TODO add description
 
-    ArrayList<Event> events = new ArrayList<Event>(); // events from user's calendar
+    ArrayList<String> locations = new ArrayList<String>(); // event locations as strings
 
 	// TODO are these ok?
 	// The indices for the projection array above.
@@ -88,15 +81,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.d(TAG, "onReceive: we got a message"); // Log actions
 
 	        // TODO add descriptive comments
-            EventListWrapper eventListWrapper = (EventListWrapper) intent.getSerializableExtra("events");
-            ArrayList<Event> receivedEvents = eventListWrapper.getEvents();
+            ArrayList<String> receivedLocations = intent.getStringArrayListExtra("locationList");
 
 	        // Check that location list is valid
-            if (receivedEvents != null) {
-                Log.d(TAG, "onReceive: We got a list of " + receivedEvents.size() + " locations from MyServiceIntent");
-                events = receivedEvents;
-                for (Event e : events){
-                    Log.d(TAG, e.title);
+            if (receivedLocations != null) {
+                Log.d(TAG, "onReceive: We got a list of locations from MyServiceIntent");
+                locations = receivedLocations;
+                for (String l : locations){
+                    Log.d(TAG, l);
                 }
             } else {
                 Log.d(TAG, "onReceive: We did not get a list of locations from MyServiceIntent");
@@ -134,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //                listItems);
 //        list = (ListView) findViewById(R.id.eventList);
 //        list.setAdapter(adapter);
-//        this.startService(i);
 
 	    // Handle details for Expandable List
 	    expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
@@ -148,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 	    }
 
 	    expListView.setAdapter(listAdapter);
+        this.startService(i); // TODO where to put this?
     }
 
 	/**
@@ -201,15 +193,4 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,         // 2
             CalendarContract.Calendars.OWNER_ACCOUNT                  // 3
     };
-
-    @Override
-    public void onMapReady(GoogleMap map) {
-
-        /**
-         * This is where we can add markers or lines, add listeners or move the camera. In this case,
-         * we add a marker to Worcester, MA (WPI's location).
-         */
-        map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
-    }
-
 }
