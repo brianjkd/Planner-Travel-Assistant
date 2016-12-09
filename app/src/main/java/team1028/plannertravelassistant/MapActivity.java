@@ -1,15 +1,23 @@
 package team1028.plannertravelassistant;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import me.everything.providers.android.calendar.Event;
 
@@ -23,6 +31,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	// Expandable List View stuffs
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
+
+	private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
+
+	private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
+
+	private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
+
+	private static final LatLng PERTH = new LatLng(-31.95285, 115.85734);
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -91,5 +107,38 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	@Override
 	public void onMapReady(GoogleMap map) {
 		map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
+		map.addPolyline((new PolylineOptions()).add(MELBOURNE, ADELAIDE, PERTH));
+		map.moveCamera(CameraUpdateFactory.newLatLng(MELBOURNE));
 	}
+
+	public LatLng getLocationFromAddress(ArrayList<String> eventLocations){
+		Geocoder coder = new Geocoder(this);
+		List<Address> address = new ArrayList<Address>();
+		LatLng p1 = null;
+
+		for (String strAddress : eventLocations) {
+			try {
+				try {
+					address = coder.getFromLocationName(strAddress, 5);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				if (address == null) {
+					return null;
+				}
+				Address location = address.get(0);
+				location.getLatitude();
+				location.getLongitude();
+
+				p1 = new LatLng(location.getLatitude(), location.getLongitude());
+
+				return p1;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return p1;
+	}
+
 }
