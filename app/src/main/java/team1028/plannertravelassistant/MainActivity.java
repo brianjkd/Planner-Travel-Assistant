@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ListView;
@@ -44,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
     private static String[] PERMISSIONS_ARRAY = {
             Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_CALENDAR
     };
-    ArrayAdapter<String> adapter;
-    ArrayList<String> listItems = new ArrayList<String>();
-    private ListView list;
+	// TODO old way of doing the lists
+//    ArrayAdapter<String> adapter;
+//    ArrayList<String> listItems = new ArrayList<String>();
+//    private ListView list;
 
 	// Expandable List View stuffs
 	ExpandableListAdapter listAdapter;
@@ -141,6 +143,18 @@ public class MainActivity extends AppCompatActivity {
 	    expListView.setAdapter(listAdapter);
         this.startService(i); // TODO where to put this?
     }
+
+	/**
+	 * Open map when button is clicked
+	 * @param view Button clicked
+	 */
+	public void openMapActivity(View view) {
+		Intent mapIntent = new Intent(this, MapActivity.class);
+
+		// TODO add extras?
+
+		startActivity(mapIntent);
+	}
 
 	/**
 	 * Add data

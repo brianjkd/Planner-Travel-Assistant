@@ -34,12 +34,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		setContentView(R.layout.activity_map);
 		Intent i = new Intent(this, ForegroundService.class);
 
+		verifyLocationPermissions(this);
+
 		// Prep map
 		SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager()
 				.findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
-
-		verifyLocationPermissions(this);
 
 		// Handle details for Expandable List
 		expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
