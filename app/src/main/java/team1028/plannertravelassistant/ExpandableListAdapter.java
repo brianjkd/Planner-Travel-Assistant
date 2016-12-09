@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,11 +24,27 @@ class ExpandableListAdapter extends BaseExpandableListAdapter {
 	private HashMap<String, List<String>> listDataChild;
 
 	// Basic constructor
+	public ExpandableListAdapter(Context context) {
+		this.context = context;
+		this.listDataHeader = new ArrayList<String>();
+		this.listDataChild = new HashMap<String, List<String>>();
+	}
+	// Multi-input constructor
 	public ExpandableListAdapter(Context context, List<String> listDataHeader,
 	                             HashMap<String, List<String>> listDataChild) {
 		this.context = context;
 		this.listDataHeader = listDataHeader;
 		this.listDataChild = listDataChild;
+	}
+
+	// Add groups
+	public void addGroup(String name) {
+		this.listDataHeader.add(name);
+	}
+
+	// Add Strings to groups
+	public void addChild(int groupPos, String data) {
+		this.listDataChild.get(this.listDataHeader.get(groupPos)).add(data);
 	}
 
 	// Get child
@@ -63,7 +80,12 @@ class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPos) {
-		return this.listDataChild.get(this.listDataHeader.get(groupPos)).size();
+		List<String> child = this.listDataChild.get(this.listDataHeader.get(groupPos));
+		if (child != null) {
+			return child.size();
+		} else {
+			return 0;
+		}
 	}
 
 	@Override

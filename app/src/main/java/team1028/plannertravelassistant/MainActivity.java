@@ -14,13 +14,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import me.everything.providers.android.calendar.Event;
 
@@ -50,15 +46,12 @@ public class MainActivity extends AppCompatActivity {
 	// Expandable List View stuffs
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
-	List<String> listDataHeader;
-	HashMap<String, List<String>> listDataChild;
 
     // this comment is a test for the project build
 
     // permission verification method.
     public static void verifyLocationPermissions(Activity activity) {
         // Check if we have read or write permission
-
         int fineLocationPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION);
         int readCalendarPermission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_CALENDAR);
         if (fineLocationPermission != PackageManager.PERMISSION_GRANTED
@@ -84,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Event> receivedEvents = eventListWrapper.getEvents();
 
             // Check that location list is valid
-            if (receivedEvents != null) {
+            if (receivedEvents != null && receivedEvents.size() > 0) {
                 Log.d(TAG, "onReceive: We got a list of " + receivedEvents.size() + " locations from MyServiceIntent");
                 events = receivedEvents;
                 for (Event e : events){
@@ -93,8 +86,13 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Log.d(TAG, "onReceive: We did not get a list of locations from MyServiceIntent");
             }
+	        updateView();
         }
     };
+
+	private void updateView() {
+
+	}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,8 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
 	    // Handle details for Expandable List
 	    expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
-	    prepListData(); // Prepare data
-	    listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
+	    listAdapter = new ExpandableListAdapter(this);
 
 	    // Error checking
 	    if (expListView == null) {
@@ -139,8 +136,17 @@ public class MainActivity extends AppCompatActivity {
 	    }
 
 	    expListView.setAdapter(listAdapter);
+	    fabricateEvents(); // Prepare data
         this.startService(i); // TODO where to put this?
     }
+
+	/**
+	 * Add data
+	 * TODO change - copied over from example
+	 */
+	private void fabricateEvents() {
+		listAdapter.addGroup("No Events");
+	}
 
 	/**
 	 * Open map when button is clicked
@@ -152,35 +158,6 @@ public class MainActivity extends AppCompatActivity {
 		// TODO add extras?
 
 		startActivity(mapIntent);
-	}
-
-	/**
-	 * Add data
-	 * TODO change - copied over from example
-	 */
-	private void prepListData() {
-		listDataHeader = new ArrayList<String>();
-		listDataChild = new HashMap<String, List<String>>();
-
-		// Adding child data
-		listDataHeader.add("Event 1");
-		listDataHeader.add("Event 2");
-		listDataHeader.add("Event 3");
-
-		// Adding child data
-		List<String> event1 = new ArrayList<String>();
-		event1.add("time: 1am");
-
-		List<String> event2 = new ArrayList<String>();
-		event2.add("time: 2pm");
-		event2.add("location: Worcester");
-
-		List<String> event3 = new ArrayList<String>();
-		event3.add("time: 9am");
-
-		listDataChild.put(listDataHeader.get(0), event1); // Header, Child data
-		listDataChild.put(listDataHeader.get(1), event2);
-		listDataChild.put(listDataHeader.get(2), event3);
 	}
 
     public void onPause(){
