@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -80,9 +81,11 @@ public class MainActivity extends AppCompatActivity {
             if (receivedEvents != null && receivedEvents.size() > 0) {
                 Log.d(TAG, "onReceive: We got a list of " + receivedEvents.size() + " locations from MyServiceIntent");
                 events = receivedEvents;
-                for (Event e : events){
-                    Log.d(TAG, e.title);
-                }
+
+	            updateView();
+//                for (Event e : events){
+//                    Log.d(TAG, e.title);
+//                }
             } else {
                 Log.d(TAG, "onReceive: We did not get a list of locations from MyServiceIntent");
             }
@@ -90,8 +93,35 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-	private void updateView() {
+	// TODO implement
+	private String calcTravelTime() {
+		return "0 minutes";
+	}
 
+	/**
+	 * Update view of events and status
+	 */
+	private void updateView() {
+		// Update travel time
+		TextView travelTimeView = (TextView)findViewById(R.id.textTravelTime);
+		String travelTimeText = "Travel Time: " + calcTravelTime();
+		travelTimeView.setText(travelTimeText);
+
+		// Update events list title
+		TextView eventsListTitle = (TextView)findViewById(R.id.textEventsNum);
+		String eventsListText = events.size() + " Events";
+		eventsListTitle.setText(eventsListText);
+
+		// Update list of events TODO test
+		if (this.events.size() > 0) {
+			for (Event e : events) {
+				int newIndex = listAdapter.addGroup(e.displayName);
+
+				listAdapter.addChild(newIndex, e.description);
+				listAdapter.addChild(newIndex, e.eventLocation);
+				listAdapter.addChild(newIndex, e.duration);
+			}
+		}
 	}
 
     @Override
@@ -136,8 +166,9 @@ public class MainActivity extends AppCompatActivity {
 	    }
 
 	    expListView.setAdapter(listAdapter);
-	    fabricateEvents(); // Prepare data
+
         this.startService(i); // TODO where to put this?
+	    updateView(); // Just to get initial display of no info
     }
 
 	/**
@@ -173,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 mMessageReceiver, new IntentFilter("locations"));
     }
 
+	// TODO why is this down here?
     // calendar stuff
     // Projection array. Creating indices for this array instead of doing
 // dynamic lookups improves performance.

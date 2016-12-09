@@ -37,9 +37,10 @@ class ExpandableListAdapter extends BaseExpandableListAdapter {
 		this.listDataChild = listDataChild;
 	}
 
-	// Add groups
-	public void addGroup(String name) {
+	// Add group and return index added at TODO check for duplicates!
+	public int addGroup(String name) {
 		this.listDataHeader.add(name);
+		return this.listDataHeader.indexOf(name);
 	}
 
 	// Add Strings to groups
