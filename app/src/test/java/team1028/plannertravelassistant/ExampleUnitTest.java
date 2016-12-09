@@ -25,15 +25,15 @@ public class ExampleUnitTest {
         origins.add("manchester+,+CT"); // ensure sure no spaces in the string
 
         ArrayList<String> destinations = new ArrayList<>();
-        destinations.add("WPI+worcester");
+        destinations.add("44.2717525+,+-75.7971609");
 
         TrafficRouter router = new TrafficRouter(origins, destinations);
 
-        String json = router.totalTravelTime("imperial", null, "driving", "pessimistic");
+        String json = router.getTrafficJson("imperial", null, "driving", "pessimistic");
         assertNotNull(json); // TODO what does an error look like?
         if (json != null && !json.isEmpty()) {
             System.out.println("returned json " + json);
-            String duration = router.parseTravelDuration(json);
+            float duration = router.parseTravelDuration(json);
             System.out.println(duration);
         }
     }

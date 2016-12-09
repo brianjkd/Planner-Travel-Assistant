@@ -1,5 +1,7 @@
 package team1028.plannertravelassistant;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,6 +17,8 @@ class TrafficRouter {
 	private ArrayList<String> origins; // String list of origins
 	private ArrayList<String> destinations; // String list of destinations
 
+	private static final String TAG = "TrafficRouter";
+
 	// Basic URL for distance/time requests
 	private final String DIST_MAT_URL = "https://maps.googleapis.com/maps/api/distancematrix/json?";
 
@@ -28,7 +32,7 @@ class TrafficRouter {
 		this.destinations = dest;
 	}
 
-	public String totalTravelTime(String units, String arrivalTime, String mode, String trafficModel) {
+	public String getTrafficJson(String units, String arrivalTime, String mode, String trafficModel) {
 		double totalTime = -1; // Error output is -1
 		String jsonResult;
 
@@ -92,23 +96,30 @@ class TrafficRouter {
 		return requestURL;
 	}
 
-
-	// this method only parses for the travel duration
-	// can extend to deserialize into a java object that has fields
-	// for all the key value pairs
-	public String parseTravelDuration(String json){
-		String duration = null; // the travel duration
+	// this method returns the travel duration in seconds for the first origin/destination
+	public float parseTravelDuration(String json){
+		float duration = -1; // the travel duration
 		try {
-			JSONObject jsonRespRouteDuration = new JSONObject(json)
-                    .getJSONArray("rows")
-                    .getJSONObject(0)
-                    .getJSONArray ("elements")
-                    .getJSONObject(0)
-                    .getJSONObject("duration");
+			JSONObject jsonRespStatusOK = new JSONObject(json)
+					.getJSONArray("rows")
+					.getJSONObject(0)
+					.getJSONArray ("elements")
+					.getJSONObject(0);
+			String status  = jsonRespStatusOK.get("status").toString();
 
-			duration = jsonRespRouteDuration.get("text").toString();
+			if (status.equals("OK")){
+				JSONObject jsonRespRouteDuration = new JSONObject(json)
+						.getJSONArray("rows")
+						.getJSONObject(0)
+						.getJSONArray ("elements")
+						.getJSONObject(0)
+						.getJSONObject("duration");
+				duration = Float.parseFloat( jsonRespRouteDuration.get("value").toString());
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
+			Log.d(TAG, "parseTravelDurationFailed: " + json);
+			return duration;
 		}
 		return duration;
 	}

@@ -5,5 +5,9 @@
 **/*.iml
 .gradle/
 gradle/
+<<<<<<< HEAD
 .gradle/../local.properties
 .properties
+.gradle
+local.properties
+/build
