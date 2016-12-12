@@ -66,6 +66,34 @@ public class MyServiceIntent extends IntentService {
         notificationManager.notify(notificationID, notification);
     }
 
+
+    // Calculate the total travel time in minutes for all event's locations chained consecutively
+    public float totalTravelTime(ArrayList<Event> filteredEvents, String userLoc){
+
+        ArrayList<String> origins = new ArrayList<String>();
+        ArrayList<String> destinations = new ArrayList<String>();
+
+        for (int i = 0 ; i < filteredEvents.size(); i ++) {
+            if (i == 0) {origins.add(userLoc);}
+            else {
+                String origin = filteredEvents.get(i-1).eventLocation;
+                origin = origin.replaceAll("\\s", "+"); // format for get request
+                origins.add(origin);
+            }
+            String destination = filteredEvents.get(i).eventLocation;
+            destination = destination.replaceAll("\\s", "+"); // format for get request
+            destinations.add(destination);
+        }
+
+        // figure out the travel time from current location to destination
+        TrafficRouter trafficRouter = new TrafficRouter(origins, destinations);
+        String retJson = trafficRouter.getTrafficJson("imperial", null, "driving", "pessimistic");
+        Log.d(TAG, "returned json: " + retJson);
+        float travelTime = trafficRouter.parseTravelDuration(retJson);
+        Log.d(TAG, "totalTravelTime: " + travelTime);
+        return travelTime / 60f; // total travel time for events in minutes
+    }
+
     @Override
     protected void onHandleIntent(Intent workIntent) { // do stuff when alarm starts this intent
         Log.d(TAG, "onHandleIntent: Do stuff");
@@ -83,7 +111,7 @@ public class MyServiceIntent extends IntentService {
             String userLoc = Double.toString(lastKnownLoc.getLatitude()) + "+,+" +
                     Double.toString(lastKnownLoc.getLongitude());
 
-            for (Event e : filteredEvents){ // this loop stops after the first successful traffic lookup
+                for (Event e : filteredEvents){ // this loop stops after the first successful traffic lookup
                 ArrayList<String> origins = new ArrayList<String>();
                 ArrayList<String> destinations = new ArrayList<String>();
 
@@ -98,7 +126,7 @@ public class MyServiceIntent extends IntentService {
                 Log.d(TAG, "returned json: " + retJson);
                 float travelTime = trafficRouter.parseTravelDuration(retJson);
 
-                if (travelTime > 0 ){ // negative travel time means traffic lookup failed
+                if (travelTime > 0 ){
                     Log.d(TAG, "onHandleIntent: travel time " + travelTime);
 
                     long currTime = System.currentTimeMillis();
@@ -132,8 +160,8 @@ public class MyServiceIntent extends IntentService {
                 // send the filtered list of location names to the main activity so it can draw to
                 // note, the locations sent to main activity have location strings but they may be invalid locations
                 // use geocoder on main activity since the lat lon coordinates still need to be extracted
-                ArrayList<String> locations = getLocations(filteredEvents);
-                sendMessageToActivity(filteredEvents);
+                float totalTravelTime = totalTravelTime(filteredEvents, userLoc);
+                sendMessageToActivity(filteredEvents, totalTravelTime);
             }
             else {
                 Log.d(TAG, "onHandleIntent: user's current location is null");
@@ -184,14 +212,14 @@ public class MyServiceIntent extends IntentService {
     }
 
 
-    private void sendMessageToActivity(ArrayList<Event> events) {
+    private void sendMessageToActivity(ArrayList<Event> events, float totalTravelTime) {
         Log.d(TAG, "Sending message to main activity with list of locations as strings");
         // Create Event for change of Location
         Intent intent = new Intent("locations");
 
         intent.putExtra("events", new EventListWrapper(events));
+        intent.putExtra("totalTravelTime", totalTravelTime);
 
-        //intent.putStringArrayListExtra("locationList", locations);
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 

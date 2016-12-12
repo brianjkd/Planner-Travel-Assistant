@@ -1,7 +1,5 @@
 package team1028.plannertravelassistant;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
@@ -16,14 +14,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import me.everything.providers.android.calendar.Event;
 
 import static team1028.plannertravelassistant.MainActivity.verifyLocationPermissions;
 
@@ -46,17 +41,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 	private static final LatLng PERTH = new LatLng(-31.95285, 115.85734);
 
+
+	ArrayList<String> locations = new ArrayList<String>(); // events from user's calendar
+
 	ArrayList<LatLng> coordinates;
 	ArrayList<String> testStrings = new ArrayList<String>();
 	ArrayList<LatLng> testLocations = new ArrayList<LatLng>();
+
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
 
-		// TODO handled in MainActivity?
-//		Intent i = new Intent(this, ForegroundService.class);
-//		startActivity(i);
+
+		// let's get the list of events sent over from the MainActivity
+		Intent intent = getIntent(); //
+		this.locations = intent.getStringArrayListExtra("locations");
+		if (this.locations != null){
+			for (String l : this.locations){
+				Log.d(TAG, "onCreate: event from main " + l);
+			}
+		}
 
 		// Important!
 		verifyLocationPermissions(this);
@@ -66,6 +71,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		testStrings.add("Worcester");
 		testStrings.add("WPI");
 		testLocations = getLocationFromAddress(testStrings);
+
+		if (this.locations != null) {
+			testLocations = getLocationFromAddress(locations);
+		}
 
 		// Prep map
 		SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager()
@@ -95,17 +104,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		String travelTimeString = "Travel Time: 0 min";
 		travelTime.setText(travelTimeString);
 
-		// TODO store Events list
-//		// Update list of events TODO test
-//		if (this.events.size() > 0) {
-//			for (Event e : events) {
-//				int newIndex = listAdapter.addGroup(e.displayName);
-//
-//				listAdapter.addChild(newIndex, e.description);
-//				listAdapter.addChild(newIndex, e.eventLocation);
-//				listAdapter.addChild(newIndex, e.duration);
-//			}
-//		}
 	}
 
 	public void onPause() {

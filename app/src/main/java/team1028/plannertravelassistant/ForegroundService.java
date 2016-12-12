@@ -177,6 +177,7 @@ public class ForegroundService extends Service implements
 
     @Override
     public void onDestroy() {
+        Log.d(TAG, "onDestroy: ");
         R1.stop(); // stop repeating MyServiceIntent
         LocationServices.FusedLocationApi.removeLocationUpdates(
                 googleApiClient, this);

@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -25,7 +24,7 @@ public class BasicUnitTest {
 		destinations = new ArrayList<>();
 
 		origins.add("manchester+,+CT"); // ensure no spaces in the string
-		destinations.add("44.2717525+,+-75.7971609");
+		destinations.add("Wpi+,+Worcester");
 	}
 
 	@After
@@ -50,8 +49,9 @@ public class BasicUnitTest {
 
 	@Test
 	public void testMultiplePlaces() throws Exception {
-		origins.add("Burlington+VT");
-		destinations.add("Houston,+TX");
+
+		origins.add("Wpi,Worcester");
+		destinations.add("Framingham,MA");
 
 		TrafficRouter router = new TrafficRouter(origins, destinations);
 
@@ -61,8 +61,10 @@ public class BasicUnitTest {
 		if (!json.isEmpty()) {
 			float duration = router.parseTravelDuration(json);
 
+			System.out.println("the sum of duration is " + duration);
+
 			assertTrue(duration > 0);
-//			System.out.println("returned json " + json);
+			System.out.println("returned json " + json);
 			assertTrue(duration > 1000);
 		}
 	}

@@ -104,26 +104,34 @@ class TrafficRouter {
 		return requestURL;
 	}
 
-	// this method returns the travel duration in seconds for the first origin/destination
-	public float parseTravelDuration(String json){
-		float duration = -1; // the travel duration
-		try {
-			JSONObject jsonRespStatusOK = new JSONObject(json)
-					.getJSONArray("rows")
-					.getJSONObject(0)
-					.getJSONArray ("elements")
-					.getJSONObject(0);
-			String status  = jsonRespStatusOK.get("status").toString();
 
-			if (status.equals("OK")) {
-				JSONObject jsonRespRouteDuration = new JSONObject(json)
+
+	// this method returns the travel duration in seconds for a matrix of origin/destination
+	public float parseTravelDuration(String json){
+		float duration = 0; // the travel duration
+		try {
+			int rowSize = new JSONObject(json)
+					.getJSONArray("rows").length();
+
+			for (int i = 0; i < rowSize; i++){
+				int elementSize = new JSONObject(json)
 						.getJSONArray("rows")
-						.getJSONObject(0)
-						.getJSONArray ("elements")
-						.getJSONObject(0)
-						.getJSONObject("duration");
-				// Get event duration in seconds
-				duration = Float.parseFloat( jsonRespRouteDuration.get("value").toString());
+						.getJSONObject(i)
+						.getJSONArray ("elements").length();
+
+				if (rowSize == elementSize){
+					JSONObject jsonObject = new JSONObject(json)
+							.getJSONArray("rows")
+							.getJSONObject(i)
+							.getJSONArray ("elements")
+							.getJSONObject(i);
+					String status  = jsonObject.get("status").toString();
+					if (status.equals("OK")) {
+						JSONObject jsonDurationObject = jsonObject.getJSONObject("duration");
+						// Get event duration in seconds
+						duration += Float.parseFloat( jsonDurationObject.get("value").toString());
+					}
+				}
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -133,17 +141,29 @@ class TrafficRouter {
 		return duration;
 	}
 
+/*
+	// this method returns the travel duration in seconds for the first origin/destination
+	public float parseTravelDuration(String json){
+		float duration = -1; // the travel duration
+		try {
+			JSONObject jsonObject = new JSONObject(json)
+					.getJSONArray("rows")
+					.getJSONObject(0)
+					.getJSONArray ("elements")
+					.getJSONObject(0);
+			String status  = jsonObject.get("status").toString();
+
+			if (status.equals("OK")) {
+				JSONObject jsonDurationObject = jsonObject.getJSONObject("duration");
+				// Get event duration in seconds
+				duration = Float.parseFloat( jsonDurationObject.get("value").toString());
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+			Log.d(TAG, "parseTravelDurationFailed: " + json);
+			return duration;
+		}
+		return duration;
+	}*/
+
 }
-
-
-
-// TODO classes for deserialization
-// TODO why are these in the same file???
-//class distance{
-//}
-//
-//class distanceResult{
-//	ArrayList<String> destination_addresses = new ArrayList<>();
-//	ArrayList<String> origin_addresses = new ArrayList<>();
-//	String status;
-//}

@@ -17,8 +17,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-import com.google.android.gms.maps.model.LatLng;
-
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import me.everything.providers.android.calendar.Event;
@@ -27,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 	public static final String TAG = "MainActivity"; // TODO add description
 
     ArrayList<Event> events = new ArrayList<Event>(); // events from user's calendar
+	private float totalTravelTime = 0; // the total travel time in minutes for all events
+
 	ArrayList<GeoLocation> eventLocations = new ArrayList<GeoLocation>(); // list of locations obtained from events list
 
 	// TODO are these ok?
@@ -80,15 +81,19 @@ public class MainActivity extends AppCompatActivity {
             EventListWrapper eventListWrapper = (EventListWrapper) intent.getSerializableExtra("events");
             ArrayList<Event> receivedEvents = eventListWrapper.getEvents();
 
+			float receivedTotalTravelTime = intent.getFloatExtra("totalTravelTime", 0);
+			if (receivedTotalTravelTime > 0){ // we actually got something
+				totalTravelTime = receivedTotalTravelTime;
+				Log.d(TAG, "totalTravelTime : " + totalTravelTime);
+			}
+
             // Check that location list is valid
             if (receivedEvents != null && receivedEvents.size() > 0) {
                 Log.d(TAG, "onReceive: We got a list of " + receivedEvents.size() + " locations from MyServiceIntent");
                 events = receivedEvents;
-
-	            updateView();
-//                for (Event e : events){
-//                    Log.d(TAG, e.title);
-//                }
+				for (Event e : events){
+                    Log.d(TAG, e.title);
+                }
             } else {
                 Log.d(TAG, "onReceive: We did not get a list of locations from MyServiceIntent");
             }
@@ -107,7 +112,11 @@ public class MainActivity extends AppCompatActivity {
 	private void updateView() {
 		// Update travel time
 		TextView travelTimeView = (TextView)findViewById(R.id.textTravelTime);
-		String travelTimeText = "Travel Time: " + calcTravelTime();
+
+		DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(1);
+
+		String travelTimeText = "Travel Time: " + df.format(totalTravelTime) + " minutes";
 		travelTimeView.setText(travelTimeText);
 
 		// Update events list title
@@ -115,16 +124,13 @@ public class MainActivity extends AppCompatActivity {
 		String eventsListText = events.size() + " Events";
 		eventsListTitle.setText(eventsListText);
 
-		// Update list of events TODO test
-		if (this.events.size() > 0) {
+		// Update list of events TODO @whoever is doing UI: Fix this or use ListView -Brian
 			for (Event e : events) {
-				int newIndex = listAdapter.addGroup(e.displayName);
-
-				listAdapter.addChild(newIndex, e.description);
-				listAdapter.addChild(newIndex, e.eventLocation);
-				listAdapter.addChild(newIndex, e.duration);
+				int newIndex = listAdapter.addGroup(e.title);
+				//listAdapter.addChild(newIndex, e.description); // crashing on addChild
+				//listAdapter.addChild(newIndex, e.eventLocation);
+				//listAdapter.addChild(newIndex, e.duration);
 			}
-		}
 	}
 
     @Override
@@ -189,9 +195,14 @@ public class MainActivity extends AppCompatActivity {
 	public void openMapActivity(View view) {
 		Intent mapIntent = new Intent(this, MapActivity.class);
 
+		ArrayList<String> locations = new ArrayList<>();
+		for (Event e: this.events){
+			locations.add(e.eventLocation);
+		}
+
 		// TODO add extras?
 		Log.d(TAG, "Sending message to map activity with list of event locations");
-		mapIntent.putExtra("events", new EventListWrapper(events));
+		mapIntent.putStringArrayListExtra("locations", locations);
 		startActivity(mapIntent);
 	}
 
