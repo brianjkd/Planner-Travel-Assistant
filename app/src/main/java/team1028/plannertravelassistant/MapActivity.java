@@ -9,15 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,20 +37,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 	ArrayList<GeoLocation> eventLocations;
 
-	private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
-
-	private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
-
-	private static final LatLng PERTH = new LatLng(-31.95285, 115.85734);
-
-
 	ArrayList<String> locations = new ArrayList<String>(); // events from user's calendar
 	Location lastKnownLocation = null;
 
 	ArrayList<LatLng> coordinates;
 	ArrayList<String> testStrings = new ArrayList<String>();
-	ArrayList<LatLng> testLocations = new ArrayList<LatLng>();
-
+	ArrayList<LatLng> geoLocations = new ArrayList<LatLng>();
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -66,24 +59,31 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		}
 
 		Bundle b = intent.getBundleExtra("userLocation");
-		Location receivedLastKnownLoc = b.getParcelable("userLocation");
-
-		if (receivedLastKnownLoc != null){
-			lastKnownLocation = receivedLastKnownLoc;
-			Log.d(TAG, "onCreate: we got the user's location" + lastKnownLocation.getLatitude());
+		// check that the bundle exists
+		// if it does, get the user's current location assuming it exists
+		if (b != null)
+		{
+			Location receivedLastKnownLoc = b.getParcelable("userLocation");
+			if (receivedLastKnownLoc != null){
+				lastKnownLocation = receivedLastKnownLoc;
+				Log.d(TAG, "onCreate: we got the user's location" + lastKnownLocation.getLatitude());
+			}
 		}
-
+		else
+		{
+			// if the user attempts to open the map when the bundle is empty, alert
+			Toast.makeText(getApplicationContext(), "Your location has not been set yet", Toast.LENGTH_LONG).show();
+		}
 		// Important!
 		verifyLocationPermissions(this);
 
-		//coordinates = savedInstanceState.getParcelableArrayList("events");
-		testStrings.add("Winchester");
-		testStrings.add("Worcester");
-		testStrings.add("WPI");
-		testLocations = getLocationFromAddress(testStrings);
-
+		// parse the location strings
 		if (this.locations != null) {
-			testLocations = getLocationFromAddress(locations);
+			geoLocations = getLocationFromAddress(locations);
+			if (lastKnownLocation != null) {
+				// set the user's current location to be the first item in the list
+				geoLocations.add(0, new LatLng(lastKnownLocation.getLatitude(), lastKnownLocation.getLongitude()));
+			}
 		}
 
 		// Prep map
@@ -131,44 +131,48 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	 */
 	@Override
 	public void onMapReady(GoogleMap map) {
-		//map.addMarker(new MarkerOptions().position(new LatLng(42.2722, -71.8038)).title("Marker"));
 
-		//map.addPolyline((new PolylineOptions()).add(MELBOURNE, ADELAIDE, PERTH));
-		map.addPolyline((new PolylineOptions()).addAll(testLocations));
-		map.moveCamera(CameraUpdateFactory.newLatLng(testLocations.get(0)));
-
+		// create the polyline with the retrieved locations
+		map.addPolyline((new PolylineOptions()).addAll(geoLocations));
+		// add a marker at each location point
+		for (LatLng l : geoLocations)
+			{
+				map.addMarker(new MarkerOptions().position(l));
+			}
+		// check that the list is not empty before setting the camera at the user's location
+		if (geoLocations.size() > 0)
+		{
+			map.moveCamera(CameraUpdateFactory.newLatLng(geoLocations.get(0)));
+		}
 		updateView();
 	}
 
+	/**
+	 * Parses a list of event location strings to LatLng objects;
+	 * returns a list of LatLng coordinates
+	 * @param eventLocations
+	 * @return
+     */
 	public ArrayList<LatLng> getLocationFromAddress(ArrayList<String> eventLocations){
 		Geocoder coder = new Geocoder(this);
-		List<Address> address = new ArrayList<Address>();
-		LatLng p1 = null;
-		ArrayList<LatLng> locations = new ArrayList<LatLng>();
+		ArrayList<LatLng> coordinates = new ArrayList<LatLng>();
 
 		for (String strAddress : eventLocations) {
+			List<Address> address = new ArrayList<Address>();
 			try {
-				try {
-					address = coder.getFromLocationName(strAddress, 5);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				if (address == null) {
-					return null;
-				}
-				Address location = address.get(0);
-				location.getLatitude();
-				location.getLongitude();
-
-				p1 = new LatLng(location.getLatitude(), location.getLongitude());
-
-				locations.add(p1);
-			} catch (Exception e) {
+				address = coder.getFromLocationName(strAddress, 5);
+			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+				if (address != null && address.size() > 0) {
+					Address location = address.get(0);
+					location.getLatitude();
+					location.getLongitude();
 
-		return locations;
+					coordinates.add(new LatLng(location.getLatitude(), location.getLongitude()));
+				}
+			}
+		return coordinates;
 	}
 
 }
