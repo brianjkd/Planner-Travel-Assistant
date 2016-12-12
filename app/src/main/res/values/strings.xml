@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Planner Travel Assistant</string>
     <color name="background_color">#000000</color>
-    <color name="text_color">#5DFC0A</color>
+    <color name="text_color">#7FFF00</color>
 </resources>
