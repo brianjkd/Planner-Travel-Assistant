@@ -31,12 +31,6 @@ import static team1028.plannertravelassistant.MainActivity.verifyLocationPermiss
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 	public static final String TAG = "MapActivity"; // TODO add description
 
-	// Expandable List View stuffs
-	ExpandableListAdapter listAdapter;
-	ExpandableListView expListView;
-
-	ArrayList<GeoLocation> eventLocations;
-
 	ArrayList<String> locations = new ArrayList<String>(); // events from user's calendar
 	Location lastKnownLocation = null;
 
@@ -91,17 +85,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 				.findFragmentById(R.id.mapView);
 		mapFragment.getMapAsync(this);
 
-		// Handle details for Expandable List
-		expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
-		listAdapter = new ExpandableListAdapter(this);
-
-		// Error checking
-		if (expListView == null) {
-			System.out.println("ERROR: expListView is null!");
-			return;
-		}
-
-		expListView.setAdapter(listAdapter);
 		updateView();
 	}
 
@@ -110,9 +93,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	 */
 	private void updateView() {
 		// Update travel time
-		TextView travelTime = (TextView)findViewById(R.id.textTravelTimeMap);
-		String travelTimeString = "Travel Time: 0 min";
-		travelTime.setText(travelTimeString);
+//		TextView travelTime = (TextView)findViewById(R.id.textTravelTimeMap);
+//		String travelTimeString = "Travel Time: 0 min";
+//		travelTime.setText(travelTimeString);
 
 	}
 
@@ -143,6 +126,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 		if (geoLocations.size() > 0)
 		{
 			map.moveCamera(CameraUpdateFactory.newLatLng(geoLocations.get(0)));
+			map.animateCamera(CameraUpdateFactory.newLatLngZoom(geoLocations.get(0), 13));
 		}
 		updateView();
 	}

@@ -10,21 +10,35 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.provider.CalendarContract;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import me.everything.providers.android.calendar.Event;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 	public static final String TAG = "MainActivity"; // TODO add description
+
+    private GoogleApiClient googleApiClient;
+    private Location lastLocation = null;
+    private LocationRequest locationRequest;
 
     ArrayList<Event> events = new ArrayList<Event>(); // events from user's calendar
 	private float totalTravelTime = 0; // the total travel time in minutes for all events
@@ -147,33 +161,38 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
+                .build();
+
         setContentView(R.layout.activity_main);
         Intent i = new Intent(this, ForegroundService.class);
+        Button sync = (Button) findViewById(R.id.btnSync);
+        sync.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, MyServiceIntent.class);
 
-	    // TODO move to MapActivity
-//        SupportMapFragment mapFragment =
-//                (SupportMapFragment) getSupportFragmentManager().findFragmentById(mapView);
-//        mapFragment.getMapAsync(this);
+                Bundle b = new Bundle();
+
+                if (lastLocation != null)
+                {
+                    b.putParcelable("Location", lastLocation);
+                    i.putExtra("Location", b);
+                    MainActivity.this.startService(i); // start the service intent
+                }
+                else
+                {
+                    Toast.makeText(getApplicationContext(), "We could not retrieve your current location", Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
+
 
         verifyLocationPermissions(this);
-
-	    // TODO why is this here?
-        // configure architecture so that this takes the event list from MyServiceIntent
-//        listItems.add("test 1");
-//        listItems.add("test 2");
-//        listItems.add("test 1");
-//        listItems.add("test 3");
-//        listItems.add("test 1");
-//        listItems.add("test 2");
-//        listItems.add("test 1");
-//        listItems.add("test 3");
-
-//	    // TODO specify adapter type
-//        adapter=new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1,
-//                listItems);
-//        list = (ListView) findViewById(R.id.eventList);
-//        list.setAdapter(adapter);
 
 	    // Handle details for Expandable List
 	    expListView = (ExpandableListView)findViewById(R.id.viewExpandList); // Get list view
@@ -250,4 +269,42 @@ public class MainActivity extends AppCompatActivity {
             CalendarContract.Calendars.CALENDAR_DISPLAY_NAME,         // 2
             CalendarContract.Calendars.OWNER_ACCOUNT                  // 3
     };
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        // TODO handle runtime permission rather than wrapping in a try catch
+        try { Location temp = LocationServices.FusedLocationApi.getLastLocation(
+                googleApiClient);
+            if (temp != null) {
+                lastLocation = temp;
+            }
+        }
+        catch (SecurityException e){}
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onStart()
+    {
+        googleApiClient.connect();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop()
+    {
+//        LocationServices.FusedLocationApi.removeLocationUpdates(
+//                googleApiClient, (LocationListener) this);
+        googleApiClient.disconnect();
+        super.onStop();
+    }
 }
