@@ -161,7 +161,7 @@ public class MyServiceIntent extends IntentService {
                 // note, the locations sent to main activity have location strings but they may be invalid locations
                 // use geocoder on main activity since the lat lon coordinates still need to be extracted
                 float totalTravelTime = totalTravelTime(filteredEvents, userLoc);
-                sendMessageToActivity(filteredEvents, totalTravelTime);
+                sendMessageToActivity(filteredEvents, totalTravelTime, lastKnownLoc);
             }
             else {
                 Log.d(TAG, "onHandleIntent: user's current location is null");
@@ -212,13 +212,17 @@ public class MyServiceIntent extends IntentService {
     }
 
 
-    private void sendMessageToActivity(ArrayList<Event> events, float totalTravelTime) {
+    private void sendMessageToActivity(ArrayList<Event> events, float totalTravelTime, Location curLocation) {
         Log.d(TAG, "Sending message to main activity with list of locations as strings");
         // Create Event for change of Location
         Intent intent = new Intent("locations");
 
         intent.putExtra("events", new EventListWrapper(events));
         intent.putExtra("totalTravelTime", totalTravelTime);
+
+        Bundle b = new Bundle();
+        b.putParcelable("userLocation", curLocation);
+        intent.putExtra("userLocation", b);
 
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }

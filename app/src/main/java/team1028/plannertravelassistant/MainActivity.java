@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
 	private float totalTravelTime = 0; // the total travel time in minutes for all events
 
 	ArrayList<GeoLocation> eventLocations = new ArrayList<GeoLocation>(); // list of locations obtained from events list
+
+	Location lastKnownLocation;
 
 	// TODO are these ok?
 	// The indices for the projection array above.
@@ -85,6 +88,14 @@ public class MainActivity extends AppCompatActivity {
 			if (receivedTotalTravelTime > 0){ // we actually got something
 				totalTravelTime = receivedTotalTravelTime;
 				Log.d(TAG, "totalTravelTime : " + totalTravelTime);
+			}
+
+			Bundle b = intent.getBundleExtra("userLocation");
+			Location receivedLastKnownLoc = b.getParcelable("userLocation");
+
+			if (receivedLastKnownLoc != null){
+				lastKnownLocation = receivedLastKnownLoc;
+				Log.d(TAG, "onReceive: got a last known user gps coord" + lastKnownLocation.getLatitude());
 			}
 
             // Check that location list is valid
@@ -203,6 +214,16 @@ public class MainActivity extends AppCompatActivity {
 		// TODO add extras?
 		Log.d(TAG, "Sending message to map activity with list of event locations");
 		mapIntent.putStringArrayListExtra("locations", locations);
+
+
+		if (lastKnownLocation != null){
+			Log.d(TAG, "openMapActivity: sending lastKnownLocation");
+			Bundle b = new Bundle();
+			b.putParcelable("userLocation", lastKnownLocation);
+			mapIntent.putExtra("userLocation", b);
+		}
+
+
 		startActivity(mapIntent);
 	}
 

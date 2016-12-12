@@ -3,6 +3,7 @@ package team1028.plannertravelassistant;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -43,6 +44,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 	ArrayList<String> locations = new ArrayList<String>(); // events from user's calendar
+	Location lastKnownLocation = null;
 
 	ArrayList<LatLng> coordinates;
 	ArrayList<String> testStrings = new ArrayList<String>();
@@ -61,6 +63,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 			for (String l : this.locations){
 				Log.d(TAG, "onCreate: event from main " + l);
 			}
+		}
+
+		Bundle b = intent.getBundleExtra("userLocation");
+		Location receivedLastKnownLoc = b.getParcelable("userLocation");
+
+		if (receivedLastKnownLoc != null){
+			lastKnownLocation = receivedLastKnownLoc;
+			Log.d(TAG, "onCreate: we got the user's location" + lastKnownLocation.getLatitude());
 		}
 
 		// Important!

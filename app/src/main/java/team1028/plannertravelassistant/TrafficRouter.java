@@ -62,18 +62,18 @@ class TrafficRouter {
 	 */
 	private String formRequest(String units, String arrivalTime, String mode, String trafficModel) {
 		String requestURL = DIST_MAT_URL; // Request URL to add onto
-		String origReqs = origins.get(0); // TODO filter events - see if the place exists
-		String destReqs = destinations.get(0);
+		String origReqs = "";// = origins.get(0); // TODO filter events - see if the place exists
+		String destReqs = "";// = destinations.get(0);
 
 		// Append additional origins to the request (start with second origin to reduce if statements)
-		for (int i = 1; i < origins.size(); i++) {
+		for (int i = 0; i < origins.size(); i++) {
 			// First origin is already added, so all others are appended with "|"
 			// TODO check for valid location!
 			origReqs += "|" + origins.get(i); // TODO handle place_id
 		}
 
 		// Append additional destinations to the request (start with second destination)
-		for (int i = 1; i < destinations.size(); i++) {
+		for (int i = 0; i < destinations.size(); i++) {
 			// First destination is already added, so all others are appended with "|"
 			destReqs += "|" + destinations.get(i);
 		}
