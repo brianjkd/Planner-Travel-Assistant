@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
@@ -33,7 +32,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.TimeZone;
 
 import me.everything.providers.android.calendar.Event;
 
@@ -230,6 +228,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         });
 
 
+		Button stop = (Button) findViewById(R.id.btnStop);
+		stop.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				stopService(v);
+			}
+		});
+
+
         verifyLocationPermissions(this);
 
 	    // Handle details for Expandable List
@@ -282,6 +288,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
 
 		startActivity(mapIntent);
+	}
+
+
+	public void stopService(View view) {
+		Intent stop = new Intent(this, ForegroundService.class);
+		stop.putExtra("stop", true);
+		this.startService(stop); // TODO where to put this?
+		Toast.makeText(getApplicationContext(), "Stopping background service", Toast.LENGTH_LONG).show();
+
 	}
 
     public void onPause(){

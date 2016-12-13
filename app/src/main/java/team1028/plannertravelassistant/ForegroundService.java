@@ -73,6 +73,16 @@ public class ForegroundService extends Service implements
         // end setting up as foreground service
 
         super.onStartCommand(intent, flags, startId);
+
+        boolean stop = intent.getBooleanExtra("stop", false);
+        if (stop){
+            Log.d(TAG, "stopping service");
+            stopForeground(true);
+            stopSelf();
+        }
+
+
+
         return START_NOT_STICKY;
     }
 
@@ -85,10 +95,10 @@ public class ForegroundService extends Service implements
 
     @Override
     public void onConnected(Bundle connectionHint) {
-            Log.d(TAG, "onConnected: ");
-            locationRequest = new LocationRequest();
-            locationRequest.setInterval(1000 * 60);
-            locationRequest.setFastestInterval(1000 * 30);
+        Log.d(TAG, "onConnected: ");
+        locationRequest = new LocationRequest();
+        locationRequest.setInterval(1000 * 60);
+        locationRequest.setFastestInterval(1000 * 30);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
         startLocationUpdates();
