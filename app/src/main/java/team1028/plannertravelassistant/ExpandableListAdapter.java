@@ -2,6 +2,7 @@ package team1028.plannertravelassistant;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.google.android.gms.plus.PlusOneDummyView.TAG;
 
 /**
  * Class to interface with ExpandableListView
@@ -29,6 +32,7 @@ class ExpandableListAdapter extends BaseExpandableListAdapter {
 		this.listDataHeader = new ArrayList<String>();
 		this.listDataChild = new HashMap<String, List<String>>();
 	}
+
 	// Multi-input constructor
 	public ExpandableListAdapter(Context context, List<String> listDataHeader,
 	                             HashMap<String, List<String>> listDataChild) {
@@ -44,8 +48,11 @@ class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	// Add Strings to groups
-	public void addChild(int groupPos, String data) {
-		this.listDataChild.get(this.listDataHeader.get(groupPos)).add(data);
+	public void addChildren(int groupPos, List<String> children) {
+
+		//get the group
+		String key = this.listDataHeader.get(groupPos);
+		this.listDataChild.put(key,children);
 	}
 
 	// Get child

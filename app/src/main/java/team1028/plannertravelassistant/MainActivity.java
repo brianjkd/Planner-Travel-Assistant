@@ -30,6 +30,10 @@ import com.google.android.gms.location.LocationServices;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.TimeZone;
 
 import me.everything.providers.android.calendar.Event;
 
@@ -68,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 	// Expandable List View stuffs
 	ExpandableListAdapter listAdapter;
 	ExpandableListView expListView;
+	private List<String> listDataHeader; // Header titles
+	// Child data in format of header title, child title
+	private HashMap<String, List<String>> listDataChild;
 
     // this comment is a test for the project build
 
@@ -149,13 +156,44 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 		String eventsListText = events.size() + " Events";
 		eventsListTitle.setText(eventsListText);
 
+		ExpandableListAdapter thisAdapter = new ExpandableListAdapter(this);
+
 		// Update list of events TODO @whoever is doing UI: Fix this or use ListView -Brian
 			for (Event e : events) {
-				int newIndex = listAdapter.addGroup(e.title);
-				//listAdapter.addChild(newIndex, e.description); // crashing on addChild
-				//listAdapter.addChild(newIndex, e.eventLocation);
-				//listAdapter.addChild(newIndex, e.duration);
+				if(e != null) {
+					int newIndex = thisAdapter.addGroup(e.title);
+					ArrayList<String> details = new ArrayList<String>();
+					if(e.title != null) {
+						Log.d(TAG, "Event " + e.title + " is being added");
+						details.add(e.title);
+					}
+					if(e.description != null && e.description.length() > 2){
+						Log.d(TAG, "Description: " + e.description);
+						details.add(e.description);
+					}
+					if(e.eventLocation != null){
+						Log.d(TAG, "Location: " + e.eventLocation);
+						details.add(e.eventLocation);
+
+					}
+					if(e.dTStart != 0){
+						GregorianCalendar calendar = new GregorianCalendar();
+						calendar.setTimeInMillis(e.dTStart);
+						details.add(calendar.getTime().toString());
+					}
+					if(e.dTend != 0){
+						GregorianCalendar calendar = new GregorianCalendar();
+						calendar.setTimeInMillis(e.dTend);
+						details.add(calendar.getTime().toString());
+					}
+					thisAdapter.addChildren(newIndex, details);
+				}
+				else{
+					Log.d(TAG, "Event list is null");
+				}
+				expListView.setAdapter(thisAdapter);
 			}
+
 	}
 
     @Override
