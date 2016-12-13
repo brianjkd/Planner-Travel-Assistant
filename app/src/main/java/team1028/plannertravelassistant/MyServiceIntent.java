@@ -24,32 +24,33 @@ import me.everything.providers.android.calendar.CalendarProvider;
 import me.everything.providers.android.calendar.Event;
 
 public class MyServiceIntent extends IntentService {
-
     public static final String TAG = "MyServiceIntent";
+	private static final String MAPS_URL = "http://maps.google.com/maps?&daddr=";
 
+    // Constructor
     public MyServiceIntent(String name) {
         super(name);
     }
 
+    // Constructor with default name
     public MyServiceIntent() {
         super("MyServiceIntent");
     }
 
-
-    // push a notification to the user that will launch google navigation
-    //
+    // Push notification to launch Google Navigation
     private void pushNotification(Event e, String destination){
         // send notification to launch navigation application
         NotificationManager notificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
-        String navURL = "http://maps.google.com/maps?&daddr="+ destination;
+        String navURL = MAPS_URL + destination;
 
-        // touching the pushed notification will result in google navigation launching
+        // Clicking the notification will launch Google navigation
         // with the user's current location and destination location as travel path
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse(navURL));
 
+	    // Setup notification details and display
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
         Notification.Builder builder = new Notification.Builder(this);
         builder.setContentIntent(pendingIntent)
@@ -66,16 +67,16 @@ public class MyServiceIntent extends IntentService {
         notificationManager.notify(notificationID, notification);
     }
 
-
-    // Calculate the total travel time in minutes for all event's locations chained consecutively
+    // Calculate the total travel time in minutes for all event locations chained consecutively
     public float totalTravelTime(ArrayList<Event> filteredEvents, String userLoc){
-
         ArrayList<String> origins = new ArrayList<String>();
         ArrayList<String> destinations = new ArrayList<String>();
 
+	    // Get all origins and destinations TODO why?
         for (int i = 0 ; i < filteredEvents.size(); i ++) {
-            if (i == 0) {origins.add(userLoc);}
-            else {
+            if (i == 0) {
+	            origins.add(userLoc);
+            } else {
                 String origin = filteredEvents.get(i-1).eventLocation;
                 origin = origin.replaceAll("\\s", "+"); // format for get request
                 origins.add(origin);
@@ -85,7 +86,7 @@ public class MyServiceIntent extends IntentService {
             destinations.add(destination);
         }
 
-        // figure out the travel time from current location to destination
+        // Calculate travel time from current location to destination
         TrafficRouter trafficRouter = new TrafficRouter(origins, destinations);
         String retJson = trafficRouter.getTrafficJson("imperial", null, "driving", "pessimistic");
         Log.d(TAG, "returned json: " + retJson);
@@ -94,8 +95,10 @@ public class MyServiceIntent extends IntentService {
         return travelTime / 60f; // total travel time for events in minutes
     }
 
+	// TODO comment
+	// Notify user when departure is necessary
     @Override
-    protected void onHandleIntent(Intent workIntent) { // do stuff when alarm starts this intent
+    protected void onHandleIntent(Intent workIntent) {
         Log.d(TAG, "onHandleIntent: Do stuff");
 
         Bundle b = workIntent.getBundleExtra("Location");
@@ -169,18 +172,19 @@ public class MyServiceIntent extends IntentService {
         }
 
 
-    protected ArrayList<Event> getFilteredList(CalendarProvider calendarProvider, List<Calendar> calendars)
-    {
+	// Get filtered list of events (ensure that they are valid and usable)
+    protected ArrayList<Event> getFilteredList(CalendarProvider calendarProvider,
+                                               List<Calendar> calendars) {
         ArrayList<Event> filtered = new ArrayList<Event>();
+
         for (Calendar c : calendars){
             List<Event> events = calendarProvider.getEvents(c.id).getList();
             long currTime = System.currentTimeMillis();
             long msInTwelve = currTime + (60*60*12*1000);
-            for (Event e : events){
-                if (e.eventLocation != null && !e.eventLocation.isEmpty())
-                {
-                    if (e.dTStart > currTime && e.dTStart < msInTwelve)
-                    {
+
+            for (Event e : events) {
+                if (e.eventLocation != null && !e.eventLocation.isEmpty()) {
+                    if (e.dTStart > currTime && e.dTStart < msInTwelve) {
                         filtered.add(e);
                         Log.d(TAG, "getFilteredList: found event with location within 12 hours " + e.title);
                     }
@@ -200,9 +204,8 @@ public class MyServiceIntent extends IntentService {
         return filtered;
     }
 
-
-    protected ArrayList<String> getLocations(ArrayList<Event> events)
-    {
+	// Get locations of each event TODO is this used?
+    protected ArrayList<String> getLocations(ArrayList<Event> events) {
         ArrayList<String> ret = new ArrayList<String>();
 
         for (Event e : events){
@@ -211,8 +214,9 @@ public class MyServiceIntent extends IntentService {
         return ret;
     }
 
-
-    private void sendMessageToActivity(ArrayList<Event> events, float totalTravelTime, Location curLocation) {
+	// Update Locations list
+    private void sendMessageToActivity(ArrayList<Event> events, float totalTravelTime,
+                                       Location curLocation) {
         Log.d(TAG, "Sending message to main activity with list of locations as strings");
         // Create Event for change of Location
         Intent intent = new Intent("locations");

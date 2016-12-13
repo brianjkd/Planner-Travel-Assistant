@@ -32,7 +32,8 @@ class TrafficRouter {
 		this.destinations = dest;
 	}
 
-	public String getTrafficJson(String units, String arrivalTime, String mode, String trafficModel) {
+	// Get expected travel time from requested arrival time and travel mode
+	String getTrafficJson(String units, String arrivalTime, String mode, String trafficModel) {
 		String jsonResult;
 
 		// Check for units (default is imperial for this app)
@@ -104,28 +105,27 @@ class TrafficRouter {
 		return requestURL;
 	}
 
-
-
-	// this method returns the travel duration in seconds for a matrix of origin/destination
-	public float parseTravelDuration(String json){
+	// Calculate travel duration in seconds for a matrix of origin/destination
+	float parseTravelDuration(String json) {
 		float duration = 0; // the travel duration
 		try {
 			int rowSize = new JSONObject(json)
 					.getJSONArray("rows").length();
 
-			for (int i = 0; i < rowSize; i++){
+			for (int i = 0; i < rowSize; i++) {
 				int elementSize = new JSONObject(json)
 						.getJSONArray("rows")
 						.getJSONObject(i)
 						.getJSONArray ("elements").length();
 
-				if (rowSize == elementSize){
+				if (rowSize == elementSize) {
 					JSONObject jsonObject = new JSONObject(json)
 							.getJSONArray("rows")
 							.getJSONObject(i)
 							.getJSONArray ("elements")
 							.getJSONObject(i);
 					String status  = jsonObject.get("status").toString();
+
 					if (status.equals("OK")) {
 						JSONObject jsonDurationObject = jsonObject.getJSONObject("duration");
 						// Get event duration in seconds
@@ -141,7 +141,7 @@ class TrafficRouter {
 		return duration;
 	}
 
-/*
+/* TODO remove this?
 	// this method returns the travel duration in seconds for the first origin/destination
 	public float parseTravelDuration(String json){
 		float duration = -1; // the travel duration
@@ -165,5 +165,4 @@ class TrafficRouter {
 		}
 		return duration;
 	}*/
-
 }

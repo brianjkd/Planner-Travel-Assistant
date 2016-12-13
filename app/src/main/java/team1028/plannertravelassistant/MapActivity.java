@@ -7,8 +7,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -35,7 +33,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	Location lastKnownLocation = null;
 
 	ArrayList<LatLng> coordinates;
-	ArrayList<String> testStrings = new ArrayList<String>();
+//	ArrayList<String> testStrings = new ArrayList<String>(); // TODO remove
 	ArrayList<LatLng> geoLocations = new ArrayList<LatLng>();
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -134,29 +132,35 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 	/**
 	 * Parses a list of event location strings to LatLng objects;
 	 * returns a list of LatLng coordinates
-	 * @param eventLocations
-	 * @return
+	 * @param eventLocations List of locations as Strings
+	 * @return List of latitudes and longitudes
      */
-	public ArrayList<LatLng> getLocationFromAddress(ArrayList<String> eventLocations){
+	public ArrayList<LatLng> getLocationFromAddress(ArrayList<String> eventLocations) {
 		Geocoder coder = new Geocoder(this);
-		ArrayList<LatLng> coordinates = new ArrayList<LatLng>();
+		coordinates = new ArrayList<LatLng>(); // TODO local or global?
 
+		// TODO why are things hard-coded?
+		// Convert locations to lat/long and add to list of coordinates
 		for (String strAddress : eventLocations) {
-			List<Address> address = new ArrayList<Address>();
+			List<Address> address = new ArrayList<Address>(); // TODO can this use LatLng?
+
+			// Convert String to coordinate
 			try {
 				address = coder.getFromLocationName(strAddress, 5);
-			}catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
-				if (address != null && address.size() > 0) {
-					Address location = address.get(0);
-					location.getLatitude();
-					location.getLongitude();
 
-					coordinates.add(new LatLng(location.getLatitude(), location.getLongitude()));
-				}
+			// Null checking of addresses
+			if (address != null && address.size() > 0) {
+				Address location = address.get(0);
+				location.getLatitude();
+				location.getLongitude();
+
+				// Add to coordinates list
+				coordinates.add(new LatLng(location.getLatitude(), location.getLongitude()));
 			}
+		}
 		return coordinates;
 	}
-
 }

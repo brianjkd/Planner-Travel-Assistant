@@ -3,16 +3,14 @@ package team1028.plannertravelassistant;
 import com.google.android.gms.maps.model.LatLng;
 
 /**
+ * Class to handle and store latitude and longitude
  * Created by Miya on 12/9/2016.
  */
-
 public class GeoLocation {
+    private LatLng latitude;
+    private LatLng longitude;
 
-    LatLng latitude;
-    LatLng longitude;
-
-    GeoLocation (LatLng latitude, LatLng longitude)
-    {
+    GeoLocation (LatLng latitude, LatLng longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }

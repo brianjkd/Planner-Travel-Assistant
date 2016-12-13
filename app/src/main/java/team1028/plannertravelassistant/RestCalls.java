@@ -9,15 +9,21 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * Class to interface with RESTful API and make appropriate calls
+ */
 public class RestCalls {
     private static final int READ_TIMEOUT = 1000 * 10; // Milliseconds
     private static final int CONNECT_TIMEOUT = 1000 * 15; // Milliseconds
 
+	// Read byte input stream TODO isn't there a built-in function for this?
     private static String readStream(InputStream is) {
         try {
             ByteArrayOutputStream bo = new ByteArrayOutputStream();
+
+	        // Read to end of byte stream
             int i = is.read();
-            while(i != -1) {
+            while (i != -1) {
                 bo.write(i);
                 i = is.read();
             }
@@ -27,9 +33,11 @@ public class RestCalls {
         }
     }
 
-    public static String doGet(String myurl) throws IOException {
+	// Perform a GET request for the appropriate URL
+    public static String doGet(String aUrl) throws IOException {
+	    // Prepare to open connection
         String returnedString = "";
-        URL url = new URL(myurl);
+        URL url = new URL(aUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(READ_TIMEOUT);
         conn.setConnectTimeout(CONNECT_TIMEOUT);
@@ -41,6 +49,7 @@ public class RestCalls {
         // Starts the query
         conn.connect(); // we have a connections
 
+	    // Attempt to get response
         int response = conn.getResponseCode();
         try {
             if (response == HttpURLConnection.HTTP_OK) {
@@ -51,13 +60,15 @@ public class RestCalls {
         } finally {
             conn.disconnect();
         }
+
         return returnedString;
     }
 
-    // post some json to a url
-    public static String doPost(String myurl, String postBody) throws IOException {
+    // Perform a GET request using JSON (to the appropriate URL)
+    public static String doPost(String aUrl, String postBody) throws IOException {
+	    // Prepare for connection
         String returnedString = "";
-        URL url = new URL(myurl);
+        URL url = new URL(aUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(READ_TIMEOUT);
         conn.setConnectTimeout(CONNECT_TIMEOUT);
@@ -70,6 +81,7 @@ public class RestCalls {
         // Starts the query
         conn.connect(); // we have a connections
 
+	    // Prepare to write data
         OutputStream os = conn.getOutputStream();
         OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");
         osw.write(postBody); // write json to the server
@@ -78,6 +90,7 @@ public class RestCalls {
 
         int response = conn.getResponseCode();
 
+	    // Attempt to make POST request
         try {
             if (response == HttpURLConnection.HTTP_OK) {
                 InputStream is = new BufferedInputStream(conn.getInputStream());
